@@ -53,8 +53,17 @@ Website for agency "omnivexx", a tech service based agency offering: 1) Digital 
 - Cursor glow trail: fading violet light dots follow the cursor on desktop (Cursor.jsx, pointer:fine only).
 - Visitor analytics: POST /api/analytics/track (public, pageview/chat, once per session via sessionStorage flags), GET /api/analytics/summary (Bearer-protected). Admin inbox shows stats strip: visits/chats/leads this week + all-time.
 
+## Implemented (2026-09-12, update 6)
+- Real startup INR pricing on all 7 service pages (e.g. Ads ₹15K–₹75K+, SaaS MVP ₹50K–₹1.5L, indicators ₹5K–₹12K)
+- Weekly email digest: Sundays 9:00 AM IST, visits/chats/leads summary + lead list to owner; dedupe via db.meta; "Digest Now" button in admin for instant send
+- Lead replies from inbox: POST /api/leads/{id}/reply (JWT-protected, branded template, escapes input), admin UI with inline composer + "Replied" badges
+- Vercel prep: frontend/vercel.json (SPA rewrites), backend/vercel.json + backend/api/index.py, .env.example files for both; secrets gitignored
+- Git: local repo committed on `main` (109 files, no .env/secrets), remote origin set to https://github.com/sdhim8055-ai/omnivexx-.git — PUSH BLOCKED: no GitHub credentials in environment (needs user's PAT or Emergent GitHub connect)
+- Verified: reply e2e (toast + Replied badge), digest-now email sent, INR pricing renders, reply endpoint 401 without auth
+
 ## Backlog / Remaining
-- P0: none
+- P0: Push to GitHub — needs user's Personal Access Token (repo scope) or Emergent GitHub connect
+- P1: Vercel deploy (frontend root=frontend, backend root=backend, env vars from .env.example; MongoDB Atlas for MONGO_URL)
 - P1: Replace sample case studies + stats with real client results; email notification to founder on new lead (Resend)
 - P2: Team section, blog, SEO meta/OG images, real founder portrait, chat concierge tool-calling
 
