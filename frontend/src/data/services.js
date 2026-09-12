@@ -1,6 +1,8 @@
 export const SERVICES_DATA = [
   {
     slug: "digital-ads-marketing",
+    seoTitle: "Digital Ads & Marketing Agency | Omnivexx",
+    seoDescription: "Performance marketing that pays for itself. Omnivexx runs Meta and Google ad campaigns engineered for 3x+ ROAS. Packages from Rs 15K.",
     id: "01",
     title: "Digital ADS & Marketing",
     tag: "PERFORMANCE",
@@ -26,6 +28,8 @@ export const SERVICES_DATA = [
   },
   {
     slug: "influencer-marketing",
+    seoTitle: "Influencer Marketing Agency | Omnivexx",
+    seoDescription: "Data-matched creators and tracked campaigns that turn followers into buyers. Omnivexx influencer marketing packages from Rs 10K.",
     id: "02",
     title: "Influencer Marketing",
     tag: "REACH",
@@ -51,6 +55,8 @@ export const SERVICES_DATA = [
   },
   {
     slug: "data-science-structure-management",
+    seoTitle: "Data Science & Structure Management | Omnivexx",
+    seoDescription: "Pipelines, warehouses and dashboards with 99.9% reliability. Omnivexx builds data infrastructure that answers, not confuses. From Rs 20K.",
     id: "03",
     title: "Data Science & Structure Management",
     tag: "INFRASTRUCTURE",
@@ -76,6 +82,8 @@ export const SERVICES_DATA = [
   },
   {
     slug: "trading-indicators-bots",
+    seoTitle: "Trading Indicators & Algo Bots | Omnivexx",
+    seoDescription: "Custom PineScript indicators, backtested strategies and live trading bots with hard risk limits. Omnivexx quant engineering from Rs 5K.",
     id: "04",
     title: "Trading Indicators & Bots",
     tag: "QUANT & ALGO",
@@ -101,6 +109,8 @@ export const SERVICES_DATA = [
   },
   {
     slug: "social-media-farming",
+    seoTitle: "Social Media Growth & Farming | Omnivexx",
+    seoDescription: "Systematic audience building with 10x engagement. Omnivexx grows Instagram, X and LinkedIn profiles into inbound lead machines. From Rs 8K.",
     id: "05",
     title: "Social Media Farming",
     tag: "DOMINANCE",
@@ -126,6 +136,8 @@ export const SERVICES_DATA = [
   },
   {
     slug: "saas-engineering",
+    seoTitle: "SaaS Development Agency | Omnivexx",
+    seoDescription: "Production SaaS shipped at startup speed. React and FastAPI apps with sub-100ms APIs. MVP builds from Rs 50K at Omnivexx.",
     id: "06",
     title: "SaaS Engineering",
     tag: "FULL-STACK",
@@ -151,6 +163,8 @@ export const SERVICES_DATA = [
   },
   {
     slug: "startup-incubation",
+    seoTitle: "Startup Incubation & MVP Building | Omnivexx",
+    seoDescription: "From idea to funded venture: validation, MVP sprints, GTM and pitch support. Omnivexx incubation programs from Rs 15K.",
     id: "07",
     title: "Startup Incubation",
     tag: "VENTURE BUILD",
