@@ -20,6 +20,27 @@ export default function ServiceDetail() {
     window.scrollTo(0, 0);
   }, [slug]);
 
+  useEffect(() => {
+    if (!service) return;
+    document.title = service.seoTitle;
+    const setMeta = (key, content, prop = false) => {
+      const attr = prop ? "property" : "name";
+      let tag = document.querySelector(`meta[${attr}="${key}"]`);
+      if (!tag) {
+        tag = document.createElement("meta");
+        tag.setAttribute(attr, key);
+        document.head.appendChild(tag);
+      }
+      tag.setAttribute("content", content);
+    };
+    setMeta("description", service.seoDescription);
+    setMeta("og:title", service.seoTitle, true);
+    setMeta("og:description", service.seoDescription, true);
+    return () => {
+      document.title = "Omnivexx — Tech Service Agency";
+    };
+  }, [service]);
+
   if (!service) {
     return (
       <div className="flex min-h-screen flex-col items-center justify-center gap-6 bg-[#0A0614] text-white">

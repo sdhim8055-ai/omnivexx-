@@ -44,6 +44,17 @@ export default function Admin() {
     if (token) loadData(token);
   }, [token]);
 
+  useEffect(() => {
+    document.title = "Omnivexx — Lead Inbox";
+    let tag = document.querySelector('meta[name="robots"]');
+    if (!tag) {
+      tag = document.createElement("meta");
+      tag.name = "robots";
+      document.head.appendChild(tag);
+    }
+    tag.content = "noindex";
+  }, []);
+
   const login = async (e) => {
     e.preventDefault();
     setLoading(true);
