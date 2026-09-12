@@ -1,0 +1,201 @@
+{
+  "project_identity": {
+    "agency_name": "omnivexx",
+    "tagline": "Architecting Next-Gen Digital Dominance",
+    "brand_archetype": "Architectural Cyber-Minimalism & High-Performance Tech Agency",
+    "theme_mode": "Bold Dark Futuristic",
+    "founder": {
+      "name": "Dhimant S Reddy",
+      "email": "sdhim8055@gmail.com",
+      "phone": "+91 6361751228"
+    }
+  },
+  "typography": {
+    "headline_font": "Syne, Cabinet Grotesk, or Unbounded (Google Fonts: Syne, weight 700/800)",
+    "body_font": "Plus Jakarta Sans or Inter (Google Fonts, weight 400/500/600)",
+    "mono_font": "JetBrains Mono or Space Mono (Google Fonts, weight 400/700)",
+    "google_fonts_import_url": "https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300..700;1,300..700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Syne:wght@600;700;800&display=swap",
+    "rules": {
+      "H1_Hero": "text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tighter leading-[0.95]",
+      "H2_Section": "text-3xl sm:text-5xl lg:text-6xl font-bold tracking-tight leading-tight",
+      "H3_Subhead": "text-xl sm:text-2xl lg:text-3xl font-semibold tracking-normal",
+      "Body_Text": "text-base sm:text-lg text-slate-400 font-normal leading-relaxed",
+      "Mono_Eyebrow": "font-mono text-xs sm:text-sm tracking-[0.25em] text-cyan-400 uppercase",
+      "Stat_Number": "font-mono text-5xl sm:text-7xl lg:text-8xl font-black tracking-tighter text-white"
+    }
+  },
+  "colors": {
+    "background_base": "#06060A",
+    "background_card": "#0D0E15",
+    "background_glass": "rgba(13, 14, 21, 0.75)",
+    "border_subtle": "rgba(255, 255, 255, 0.08)",
+    "border_glow": "rgba(6, 182, 212, 0.4)",
+    "text_primary": "#F8FAFC",
+    "text_secondary": "#94A3B8",
+    "text_muted": "#64748B",
+    "accents": {
+      "electric_cyan": "#06B6D4",
+      "cyber_lime": "#10B981",
+      "laser_violet": "#A855F7",
+      "hot_amber": "#F59E0B"
+    },
+    "gradients": {
+      "hero_glow": "radial-gradient(ellipse at 50% -20%, rgba(6, 182, 212, 0.25), rgba(168, 85, 247, 0.1), transparent 70%)",
+      "card_hover": "linear-gradient(135deg, rgba(6, 182, 212, 0.15) 0%, rgba(13, 14, 21, 0) 100%)",
+      "cyan_violet_text": "linear-gradient(135deg, #FFFFFF 30%, #06B6D4 70%, #A855F7 100%)"
+    }
+  },
+  "visual_enhancers": {
+    "noise_overlay": "repeating visual grain or inline SVG turbulence background",
+    "grid_pattern": "subtle background grid lines with subtle opacity glow (1px white/5)",
+    "glassmorphism": "backdrop-blur-xl bg-[#0D0E15]/75 border border-white/10 shadow-[0_8px_32px_rgba(0,0,0,0.5)]",
+    "tracing_beam": "animated SVG beam or gradient stroke around highlight cards",
+    "cursor_trail": "subtle interactive glowing custom cursor ring (follower dot)"
+  },
+  "motion_and_animations": {
+    "momentum_scroll": "Lenis smooth scroll integration (or optimized requestAnimationFrame smooth scroll)",
+    "hero_reveal": "Framer Motion line-by-line staggered text reveal clip-path mask",
+    "scroll_reveal": "Framer Motion threshold opacity scale & translate Y on section scroll into view",
+    "horizontal_marquee": "Infinite smooth sliding tech keywords marquee ribbon with react-fast-marquee or CSS keyframes",
+    "card_tilt": "3D spring mouse cursor parallax tilt effect on hover for service items",
+    "interactive_counters": "Animated number counter up on scrolling into stats section"
+  },
+  "services_catalog": [
+    {
+      "id": "01",
+      "title": "Digital ADS & Marketing",
+      "short_desc": "High-velocity targeted campaigns, multi-channel performance scaling, and conversion funnels engineered for maximum ROAS.",
+      "tag": "PERFORMANCE",
+      "metrics": "+340% Average ROAS"
+    },
+    {
+      "id": "02",
+      "title": "Influencer Marketing",
+      "short_desc": "Data-backed creator matchmaking, viral outreach algorithms, and campaign orchestration across tier-1 global influencers.",
+      "tag": "REACH",
+      "metrics": "50M+ Organic Impressions"
+    },
+    {
+      "id": "03",
+      "title": "Data Science & Structure Management",
+      "short_desc": "Enterprise data pipelines, warehousing architecture, predictive analytics, and automated telemetry systems.",
+      "tag": "INFRASTRUCTURE",
+      "metrics": "99.99% Pipeline Reliability"
+    },
+    {
+      "id": "04",
+      "title": "Trading & Indicator & Bots",
+      "short_desc": "Algorithmic execution strategies, custom PineScript/Python indicators, high-frequency bot engines, and risk management automation.",
+      "tag": "QUANT & ALGO",
+      "metrics": "<12ms Execution Speed"
+    },
+    {
+      "id": "05",
+      "title": "Social Media Farming",
+      "short_desc": "Autonomous audience cultivation, multi-platform account authority building, and algorithmic engagement amplification.",
+      "tag": "DOMINANCE",
+      "metrics": "10x Engagement Velocity"
+    },
+    {
+      "id": "06",
+      "title": "SaaS Engineering",
+      "short_desc": "Full-stack cloud applications, scalable microservices, seamless UX/UI design, and high-concurrency architecture.",
+      "tag": "FULL-STACK",
+      "metrics": "Sub-100ms API Response"
+    },
+    {
+      "id": "07",
+      "title": "Startup Incubation",
+      "short_desc": "End-to-end venture acceleration, MVP sprint building, technical co-founding support, and pitch deck refinement.",
+      "tag": "VENTURE BUILD",
+      "metrics": "12+ Ventures Launched"
+    }
+  ],
+  "layout_sections": [
+    {
+      "name": "Navigation Bar",
+      "component": "Navbar",
+      "description": "Fixed header with glassmorphism backdrop (backdrop-blur-md bg-[#06060A]/80 border-b border-white/10), brand logo, links (Services, About, Manifesto, Contact), live status indicator ('AVAILABLE FOR Q3/Q4 PROJECTS'), sound/motion toggle, and CTA 'INITIATE PROJECT'."
+    },
+    {
+      "name": "Kinetic Hero Section",
+      "component": "Hero",
+      "description": "Large kinetic typography header with masked line-by-line reveal animation. Sub-heading with gradient highlight. Interactive CTAs: 'Explore Ecosystem' and 'Contact Founder'. Dynamic 3D abstract particle background and cyber grid metrics overlay."
+    },
+    {
+      "name": "Live Stats & Credibility Ribbon",
+      "component": "StatsRibbon",
+      "description": "4-column high contrast statistical grid featuring key agency milestones (e.g. 7 Core Disciplines, $50M+ Ad Revenue Driven, 99.8% Bot Win-Rate, 24/7 Global Ops)."
+    },
+    {
+      "name": "Manifesto / About Chapters",
+      "component": "Manifesto",
+      "description": "Numbered manifesto chapters (Chapter 01: Relentless Precision, Chapter 02: Code Meets Capital, Chapter 03: Autonomous Dominance). Interspersed with founder quote and dark moody portrait."
+    },
+    {
+      "name": "Numbered Services Accordion / Bento Grid",
+      "component": "ServicesSection",
+      "description": "Interactive list of all 7 services. Clicking/hovering expands details, active metrics, tech stack tags, and trigger modal for booking that specific service."
+    },
+    {
+      "name": "Editorial Marquee",
+      "component": "EditorialMarquee",
+      "description": "Ultra-wide kinetic text banner running smoothly across the screen with dark cyberpunk keywords: ALGORITHMIC TRADING • SAAS INCUBATION • DATA SCIENCE • DIGITAL ADS • INFLUENCER DOMINANCE."
+    },
+    {
+      "name": "Founder & Direct Contact Section",
+      "component": "ContactSection",
+      "description": "Cinematic contact block highlighting Founder Dhimant S Reddy, direct email (sdhim8055@gmail.com), phone (+91 6361751228), direct quick-copy button, and interactive Lead Generation Form with service selector and budget range."
+    },
+    {
+      "name": "Futuristic Agency Footer",
+      "component": "Footer",
+      "description": "Deep dark footer featuring giant background 'OMNIVEXX' kinetic text, copyright year (2026), quick navigation, system status indicator ('ALL SYSTEMS OPERATIONAL'), and social links."
+    }
+  ],
+  "image_urls": {
+    "hero_abstract_bg": "https://images.unsplash.com/photo-1579567761406-4684ee0c75b6?crop=entropy&cs=srgb&fm=jpg&q=85",
+    "cyber_tunnel_tech": "https://images.unsplash.com/photo-1546146477-15a587cd3fcb?crop=entropy&cs=srgb&fm=jpg&q=85",
+    "trading_chart_dark": "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?crop=entropy&cs=srgb&fm=jpg&q=85",
+    "cyber_grid_mesh": "https://images.unsplash.com/photo-1644088379091-d574269d422f?crop=entropy&cs=srgb&fm=jpg&q=85",
+    "founder_portrait": "https://images.unsplash.com/photo-1622124549569-734d5a66859d?crop=entropy&cs=srgb&fm=jpg&q=85",
+    "purple_cyber_abstract": "https://images.unsplash.com/photo-1689443111130-6e9c7dfd8f9e?crop=entropy&cs=srgb&fm=jpg&q=85"
+  },
+  "testing_attributes": {
+    "rule": "Every button, link, input, tab, card, and key text element MUST include a data-testid attribute in kebab-case.",
+    "examples": [
+      "navbar-logo-link",
+      "navbar-services-link",
+      "navbar-about-link",
+      "navbar-contact-link",
+      "navbar-cta-button",
+      "hero-title",
+      "hero-explore-button",
+      "hero-contact-button",
+      "service-card-01",
+      "service-card-02",
+      "service-card-03",
+      "service-card-04",
+      "service-card-05",
+      "service-card-06",
+      "service-card-07",
+      "founder-email-link",
+      "founder-phone-link",
+      "contact-form-name-input",
+      "contact-form-email-input",
+      "contact-form-service-select",
+      "contact-form-message-input",
+      "contact-form-submit-button"
+    ]
+  },
+  "UNIVERSAL GUIDELINES FOR MAIN AGENT": [
+    "Do NOT use generic light or bright white templates. Strictly execute the Bold Dark Futuristic aesthetic.",
+    "Do NOT use pure #000000 flat color everywhere. Tint neutrals with cool navy/dark indigo (#06060A, #0D0E15).",
+    "Ensure all contrast ratios exceed WCAG AA standards: Body text should be light silver (#94A3B8 or #F8FAFC) against dark containers.",
+    "DO NOT use transparent header without backdrop-blur. The navbar must use glassmorphism with z-50.",
+    "Use framer-motion for smooth entrance animations, hover states, accordion transitions, and horizontal scrolling.",
+    "All interactive components must have data-testid attributes.",
+    "Make sure all 7 core services specified in the user prompt are prominently displayed and filterable/expandable.",
+    "Contact info for Founder Dhimant S Reddy (sdhim8055@gmail.com, +91 6361751228) must be easily readable and functional with one-click copy/mailto."
+  ]
+}
