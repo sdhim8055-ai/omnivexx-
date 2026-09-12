@@ -61,8 +61,12 @@ Website for agency "omnivexx", a tech service based agency offering: 1) Digital 
 - Git: local repo committed on `main` (109 files, no .env/secrets), remote origin set to https://github.com/sdhim8055-ai/omnivexx-.git — PUSH BLOCKED: no GitHub credentials in environment (needs user's PAT or Emergent GitHub connect)
 - Verified: reply e2e (toast + Replied badge), digest-now email sent, INR pricing renders, reply endpoint 401 without auth
 
+## Implemented (2026-09-12, update 7)
+- VEXX call bookings now trigger a separate URGENT-branded email to owner (subject "[URGENT] Call booked via VEXX — <name>", red badge template); regular enquiries keep the standard violet template. Verified in logs.
+- GitHub push attempted with user-provided PAT: FAILED — token is valid (login sdhim8055-ai) but has NO write access (x-oauth-scopes empty; API contents write returns Not Found; git push 403). Needs a classic PAT with `repo` scope, or a fine-grained PAT with repository access to omnivexx- + Contents: Read and Write. Token was pasted in chat — user should revoke it at github.com/settings/tokens after generating the new one. Local commit on `main` remains ready to push.
+
 ## Backlog / Remaining
-- P0: Push to GitHub — needs user's Personal Access Token (repo scope) or Emergent GitHub connect
+- P0: Push to GitHub — blocked on a token with correct write permissions
 - P1: Vercel deploy (frontend root=frontend, backend root=backend, env vars from .env.example; MongoDB Atlas for MONGO_URL)
 - P1: Replace sample case studies + stats with real client results; email notification to founder on new lead (Resend)
 - P2: Team section, blog, SEO meta/OG images, real founder portrait, chat concierge tool-calling

@@ -155,28 +155,35 @@ def _lead_row(label: str, value: str) -> str:
 
 
 async def notify_owner_new_lead(lead: "Lead") -> None:
-    subject = f"New Omnivexx enquiry — {lead.service}"
+    is_call_booking = "Call Booking" in lead.service
+    if is_call_booking:
+        subject = f"[URGENT] Call booked via VEXX — {lead.name}"
+        header = '<span style="display:inline-block;background:#DC2626;color:#FFFFFF;font-family:Arial,sans-serif;font-size:11px;font-weight:bold;letter-spacing:2px;text-transform:uppercase;padding:6px 14px;border-radius:999px">Urgent — Call Booking</span>'
+        title = f'{escape(lead.name)} wants a call'
+        note = "This came through VEXX, your AI concierge. Fast replies close deals."
+    else:
+        subject = f"New Omnivexx enquiry — {lead.service}"
+        header = '<span style="display:inline-block;background:#7C3AED;color:#FFFFFF;font-family:Arial,sans-serif;font-size:11px;font-weight:bold;letter-spacing:2px;text-transform:uppercase;padding:6px 14px;border-radius:999px">New Enquiry</span>'
+        title = "New enquiry received"
+        note = "This lead is also saved in your Lead Inbox."
     html = (
         '<table role="presentation" width="100%" style="background:#F4F7FB;padding:32px 0"><tr><td align="center">'
         '<table role="presentation" width="520" style="background:#FFFFFF;border:1px solid #E2E8F0;border-radius:16px;padding:32px">'
-        '<tr><td style="font-family:Arial,sans-serif;font-size:20px;font-weight:bold;color:#0B1220;padding-bottom:4px">'
-        'New enquiry received</td></tr>'
-        '<tr><td style="font-family:Arial,sans-serif;font-size:12px;color:#0891B2;letter-spacing:3px;text-transform:uppercase;padding-bottom:20px">'
-        'Omnivexx Website</td></tr>'
+        f'<tr><td style="padding-bottom:16px">{header}</td></tr>'
+        f'<tr><td style="font-family:Arial,sans-serif;font-size:20px;font-weight:bold;color:#0B1220;padding-bottom:4px">{title}</td></tr>'
+        '<tr><td style="font-family:Arial,sans-serif;font-size:12px;color:#7C3AED;letter-spacing:3px;text-transform:uppercase;padding-bottom:20px">Omnivexx Website</td></tr>'
         '<tr><td><table role="presentation" width="100%" style="border-top:1px solid #E2E8F0">'
         + _lead_row("Name", escape(lead.name))
-        + _lead_row("Email", f'<a href="mailto:{escape(lead.email)}" style="color:#0891B2">{escape(lead.email)}</a>')
+        + _lead_row("Email", f'<a href="mailto:{escape(lead.email)}" style="color:#7C3AED">{escape(lead.email)}</a>')
         + _lead_row("Service", escape(lead.service))
         + _lead_row("Budget", escape(lead.budget or "—"))
         + _lead_row("Message", escape(lead.message))
-        + '</table></td></tr>'
-        '<tr><td style="padding-top:24px;font-family:Arial,sans-serif;font-size:11px;color:#94A3B8">'
-        'Sent by the Omnivexx website. This lead is also saved in your Lead Inbox.</td></tr>'
+        + f'</table></td></tr><tr><td style="padding-top:24px;font-family:Arial,sans-serif;font-size:11px;color:#94A3B8">{note}</td></tr>'
         '</table></td></tr></table>'
     )
     try:
         await send_email(to=OWNER_EMAIL, subject=subject, html=html)
-        logger.info(f"Lead notification emailed to {OWNER_EMAIL}")
+        logger.info(f"{'URGENT call booking alert' if is_call_booking else 'Lead notification'} emailed to {OWNER_EMAIL}")
     except Exception as e:
         logger.error(f"Lead notification email failed: {e}")
 
