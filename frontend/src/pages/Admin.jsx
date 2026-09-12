@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import axios from "axios";
-import { Hexagon, LogOut, RefreshCw, Inbox } from "lucide-react";
+import { Hexagon, LogOut, RefreshCw, Inbox, Eye, MessageSquare } from "lucide-react";
 
 const API = `${process.env.REACT_APP_BACKEND_URL}/api`;
 const TOKEN_KEY = "omnivexx_admin_token";
@@ -15,22 +15,26 @@ export default function Admin() {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const [leads, setLeads] = useState(null);
+  const [stats, setStats] = useState(null);
 
-  const loadLeads = async (t) => {
+  const loadData = async (t) => {
     try {
-      const res = await axios.get(`${API}/leads`, {
-        headers: { Authorization: `Bearer ${t}` },
-      });
-      setLeads(res.data);
+      const [leadsRes, statsRes] = await Promise.all([
+        axios.get(`${API}/leads`, { headers: { Authorization: `Bearer ${t}` } }),
+        axios.get(`${API}/analytics/summary`, { headers: { Authorization: `Bearer ${t}` } }),
+      ]);
+      setLeads(leadsRes.data);
+      setStats(statsRes.data);
     } catch {
       localStorage.removeItem(TOKEN_KEY);
       setToken(null);
       setLeads(null);
+      setStats(null);
     }
   };
 
   useEffect(() => {
-    if (token) loadLeads(token);
+    if (token) loadData(token);
   }, [token]);
 
   const login = async (e) => {
@@ -53,7 +57,16 @@ export default function Admin() {
     localStorage.removeItem(TOKEN_KEY);
     setToken(null);
     setLeads(null);
+    setStats(null);
   };
+
+  const STAT_CARDS = stats
+    ? [
+        { label: "Visits This Week", week: stats.week_pageviews, total: stats.total_pageviews, icon: Eye, testid: "stats-visits" },
+        { label: "VEXX Chats This Week", week: stats.week_chats, total: stats.total_chats, icon: MessageSquare, testid: "stats-chats" },
+        { label: "New Leads This Week", week: stats.week_leads, total: stats.total_leads, icon: Inbox, testid: "stats-leads" },
+      ]
+    : [];
 
   return (
     <div data-testid="admin-page" className="min-h-screen bg-[#F4F7FB]">
@@ -68,7 +81,7 @@ export default function Admin() {
             <div className="flex items-center gap-3">
               <button
                 data-testid="admin-refresh-button"
-                onClick={() => loadLeads(token)}
+                onClick={() => loadData(token)}
                 aria-label="Refresh leads"
                 className="flex h-9 w-9 items-center justify-center rounded-full border border-slate-200 text-slate-500 transition-colors hover:border-violet-500 hover:text-violet-600"
               >
@@ -141,6 +154,31 @@ export default function Admin() {
                 {leads ? `${leads.length} leads` : "..."}
               </span>
             </div>
+
+            {stats && (
+              <div data-testid="admin-stats-strip" className="mb-10 grid gap-4 sm:grid-cols-3">
+                {STAT_CARDS.map((c) => (
+                  <motion.div
+                    key={c.label}
+                    initial={{ opacity: 0, y: 16 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5 }}
+                    data-testid={c.testid}
+                    className="flex items-center gap-4 rounded-2xl border border-slate-200 bg-white p-5 shadow-sm"
+                  >
+                    <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-violet-500/25 bg-violet-50">
+                      <c.icon className="h-5 w-5 text-violet-600" />
+                    </div>
+                    <div>
+                      <span className="font-mono2 block text-2xl font-black text-[#0B1220]">{c.week}</span>
+                      <span className="font-mono2 text-[10px] tracking-[0.14em] text-slate-400 uppercase">
+                        {c.label} · {c.total} all time
+                      </span>
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+            )}
 
             {!leads ? (
               <p className="font-mono2 text-sm text-slate-400">Loading transmissions...</p>

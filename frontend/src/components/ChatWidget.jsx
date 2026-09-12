@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import axios from "axios";
 import { toast } from "sonner";
 import { MessageSquare, X, Send, Bot, CalendarCheck, Loader2 } from "lucide-react";
+import { trackChat } from "@/lib/track";
 
 const API = `${process.env.REACT_APP_BACKEND_URL}/api`;
 
@@ -39,6 +40,7 @@ export default function ChatWidget() {
     setInput("");
     setMessages((m) => [...m, { role: "user", text: msg }, { role: "assistant", text: "" }]);
     setStreaming(true);
+    trackChat();
     try {
       const res = await fetch(`${API}/chat`, {
         method: "POST",

@@ -2,6 +2,7 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Plus, ArrowUpRight } from "lucide-react";
 import { scrollToSection } from "@/App";
+import { SERVICE_SLUGS } from "@/data/services";
 
 const SERVICES = [
   { id: "01", title: "Digital ADS & Marketing", tag: "PERFORMANCE", metric: "3.1x Avg ROAS", desc: "High-velocity targeted campaigns, multi-channel performance scaling, and conversion funnels engineered for maximum return on ad spend.", stack: ["Meta Ads", "Google Ads", "Funnel CRO", "Attribution"] },
@@ -99,14 +100,23 @@ export default function Services() {
                             <span className="font-mono2 block text-3xl font-black text-[#0B1220] sm:text-4xl">{s.metric}</span>
                             <span className="font-mono2 mt-1 block text-[10px] tracking-[0.2em] text-slate-400 uppercase">Key Metric</span>
                           </div>
-                          <button
-                            data-testid={`service-book-${s.id}`}
-                            onClick={() => bookService(s.title)}
-                            className="group/btn flex items-center gap-2 rounded-full border border-violet-600/40 px-5 py-2.5 font-mono2 text-xs font-bold tracking-[0.14em] text-violet-700 uppercase transition-all duration-300 hover:bg-violet-500 hover:text-white"
-                          >
-                            Deploy This
-                            <ArrowUpRight className="h-3.5 w-3.5 transition-transform duration-300 group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5" />
-                          </button>
+                          <div className="flex flex-wrap items-center gap-4 sm:justify-end">
+                            <a
+                              data-testid={`service-details-${s.id}`}
+                              href={`/services/${SERVICE_SLUGS[s.title]}`}
+                              className="font-mono2 text-xs font-bold tracking-[0.14em] text-slate-500 uppercase underline decoration-violet-400/60 underline-offset-4 transition-colors duration-300 hover:text-violet-600"
+                            >
+                              Full Breakdown
+                            </a>
+                            <button
+                              data-testid={`service-book-${s.id}`}
+                              onClick={() => bookService(s.title)}
+                              className="group/btn flex items-center gap-2 rounded-full border border-violet-600/40 px-5 py-2.5 font-mono2 text-xs font-bold tracking-[0.14em] text-violet-700 uppercase transition-all duration-300 hover:bg-violet-500 hover:text-white"
+                            >
+                              Deploy This
+                              <ArrowUpRight className="h-3.5 w-3.5 transition-transform duration-300 group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5" />
+                            </button>
+                          </div>
                         </div>
                       </div>
                     </motion.div>

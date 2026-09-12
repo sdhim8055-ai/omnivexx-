@@ -283,6 +283,35 @@ async def get_leads(admin=Depends(get_current_admin)):
     return leads
 
 
+ANALYTICS_TYPES = {"pageview", "chat"}
+
+
+class TrackInput(BaseModel):
+    type: str
+
+
+@api_router.post("/analytics/track")
+async def track_event(input: TrackInput):
+    if input.type not in ANALYTICS_TYPES:
+        raise HTTPException(status_code=400, detail="Invalid event type")
+    await db.analytics.insert_one({"type": input.type, "ts": datetime.now(timezone.utc).isoformat()})
+    return {"ok": True}
+
+
+@api_router.get("/analytics/summary")
+async def analytics_summary(admin=Depends(get_current_admin)):
+    week_ago = (datetime.now(timezone.utc) - timedelta(days=7)).isoformat()
+    week_events = await db.analytics.find({"ts": {"$gte": week_ago}}, {"_id": 0}).to_list(100000)
+    return {
+        "week_pageviews": sum(1 for e in week_events if e["type"] == "pageview"),
+        "week_chats": sum(1 for e in week_events if e["type"] == "chat"),
+        "week_leads": await db.leads.count_documents({"timestamp": {"$gte": week_ago}}),
+        "total_pageviews": await db.analytics.count_documents({"type": "pageview"}),
+        "total_chats": await db.analytics.count_documents({"type": "chat"}),
+        "total_leads": await db.leads.count_documents({}),
+    }
+
+
 class ChatInput(BaseModel):
     session_id: str
     message: str

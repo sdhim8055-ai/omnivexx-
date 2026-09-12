@@ -48,6 +48,11 @@ Website for agency "omnivexx", a tech service based agency offering: 1) Digital 
 - Full-screen animated mobile menu (staggered oversized links, violet aurora bg, CTA + status) behind hamburger on <md screens
 - Hero rotating headline: "// DEPLOYING <service>" cycles through all 7 services every 2.8s with vertical roll animation
 
+## Implemented (2026-09-12, update 5)
+- Service detail pages at /services/:slug for all 7 services: dark violet hero, 4-step process, 3-tier pricing hints (placeholder ranges), FAQ accordion, CTA back to contact. Data in /app/frontend/src/data/services.js. Linked from each expanded service row ("Full Breakdown").
+- Cursor glow trail: fading violet light dots follow the cursor on desktop (Cursor.jsx, pointer:fine only).
+- Visitor analytics: POST /api/analytics/track (public, pageview/chat, once per session via sessionStorage flags), GET /api/analytics/summary (Bearer-protected). Admin inbox shows stats strip: visits/chats/leads this week + all-time.
+
 ## Backlog / Remaining
 - P0: none
 - P1: Replace sample case studies + stats with real client results; email notification to founder on new lead (Resend)

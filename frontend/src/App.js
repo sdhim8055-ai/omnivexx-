@@ -15,6 +15,8 @@ import Footer from "@/components/Footer";
 import Cursor from "@/components/Cursor";
 import ChatWidget from "@/components/ChatWidget";
 import Admin from "@/pages/Admin";
+import ServiceDetail from "@/pages/ServiceDetail";
+import { trackEvent } from "@/lib/track";
 
 export const scrollToSection = (id) => {
   const lenis = window.__lenis;
@@ -27,6 +29,7 @@ export const scrollToSection = (id) => {
 
 function Home() {
   useEffect(() => {
+    trackEvent("pageview", "ovx_pv");
     const lenis = new Lenis({ duration: 1.35, smoothWheel: true });
     window.__lenis = lenis;
     let raf;
@@ -42,8 +45,15 @@ function Home() {
     };
   }, []);
 
+  useEffect(() => {
+    if (window.location.hash) {
+      const t = setTimeout(() => scrollToSection(window.location.hash), 600);
+      return () => clearTimeout(t);
+    }
+  }, []);
+
   return (
-    <div data-testid="app-root" className="relative bg-[#06060A] min-h-screen overflow-x-clip selection:bg-cyan-500/30">
+    <div data-testid="app-root" className="relative bg-[#06060A] min-h-screen overflow-x-clip selection:bg-violet-500/30">
       <Cursor />
       <Navbar />
       <main>
@@ -66,6 +76,7 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/services/:slug" element={<ServiceDetail />} />
         <Route path="/admin" element={<Admin />} />
       </Routes>
       <Toaster theme="dark" position="bottom-right" toastOptions={{ style: { background: "#0D0E15", border: "1px solid rgba(255,255,255,0.1)", color: "#F8FAFC" } }} />
