@@ -22,7 +22,7 @@ export default function Marquee() {
             >
               {w}
             </span>
-            <span className="h-2.5 w-2.5 rotate-45 bg-cyan-500" />
+            <span className="h-2.5 w-2.5 rotate-45 bg-violet-500" />
           </span>
         ))}
       </div>

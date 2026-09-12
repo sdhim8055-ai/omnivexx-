@@ -7,7 +7,7 @@ const API = `${process.env.REACT_APP_BACKEND_URL}/api`;
 const TOKEN_KEY = "omnivexx_admin_token";
 
 const inputCls =
-  "w-full rounded-lg border border-slate-200 bg-white px-4 py-3 text-sm text-[#0B1220] placeholder:text-slate-400 outline-none transition-colors duration-300 focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500/30";
+  "w-full rounded-lg border border-slate-200 bg-white px-4 py-3 text-sm text-[#0B1220] placeholder:text-slate-400 outline-none transition-colors duration-300 focus:border-violet-500 focus:ring-1 focus:ring-violet-500/30";
 
 export default function Admin() {
   const [token, setToken] = useState(() => localStorage.getItem(TOKEN_KEY));
@@ -60,9 +60,9 @@ export default function Admin() {
       <header className="border-b border-slate-200 bg-white">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-5 py-4 sm:px-8">
           <a data-testid="admin-home-link" href="/" className="flex items-center gap-2.5">
-            <Hexagon className="h-6 w-6 text-cyan-600" strokeWidth={1.5} />
+            <Hexagon className="h-6 w-6 text-violet-600" strokeWidth={1.5} />
             <span className="font-display text-lg font-extrabold tracking-[0.18em] text-[#0B1220]">OMNIVEXX</span>
-            <span className="font-mono2 rounded-full bg-cyan-50 px-2.5 py-1 text-[10px] tracking-[0.2em] text-cyan-700 uppercase">Lead Inbox</span>
+            <span className="font-mono2 rounded-full bg-violet-50 px-2.5 py-1 text-[10px] tracking-[0.2em] text-violet-700 uppercase">Lead Inbox</span>
           </a>
           {token && (
             <div className="flex items-center gap-3">
@@ -70,14 +70,14 @@ export default function Admin() {
                 data-testid="admin-refresh-button"
                 onClick={() => loadLeads(token)}
                 aria-label="Refresh leads"
-                className="flex h-9 w-9 items-center justify-center rounded-full border border-slate-200 text-slate-500 transition-colors hover:border-cyan-500 hover:text-cyan-600"
+                className="flex h-9 w-9 items-center justify-center rounded-full border border-slate-200 text-slate-500 transition-colors hover:border-violet-500 hover:text-violet-600"
               >
                 <RefreshCw className="h-4 w-4" />
               </button>
               <button
                 data-testid="admin-logout-button"
                 onClick={logout}
-                className="flex items-center gap-2 rounded-full border border-slate-200 px-4 py-2 font-mono2 text-xs tracking-[0.14em] text-slate-600 uppercase transition-colors hover:border-cyan-500 hover:text-cyan-600"
+                className="flex items-center gap-2 rounded-full border border-slate-200 px-4 py-2 font-mono2 text-xs tracking-[0.14em] text-slate-600 uppercase transition-colors hover:border-violet-500 hover:text-violet-600"
               >
                 <LogOut className="h-3.5 w-3.5" /> Logout
               </button>
@@ -125,7 +125,7 @@ export default function Admin() {
               data-testid="admin-login-submit-button"
               type="submit"
               disabled={loading}
-              className="rounded-full bg-cyan-500 py-3 font-mono2 text-xs font-bold tracking-[0.14em] text-white uppercase transition-colors hover:bg-[#0B1220] disabled:opacity-60"
+              className="rounded-full bg-violet-500 py-3 font-mono2 text-xs font-bold tracking-[0.14em] text-white uppercase transition-colors hover:bg-[#0B1220] disabled:opacity-60"
             >
               {loading ? "Verifying..." : "Enter Inbox"}
             </button>
@@ -134,7 +134,7 @@ export default function Admin() {
           <div>
             <div className="mb-8 flex items-end justify-between">
               <div>
-                <p className="font-mono2 mb-2 text-xs tracking-[0.3em] text-cyan-600 uppercase">{"// Incoming Transmissions"}</p>
+                <p className="font-mono2 mb-2 text-xs tracking-[0.3em] text-violet-600 uppercase">{"// Incoming Transmissions"}</p>
                 <h1 className="font-display text-3xl font-bold text-[#0B1220] sm:text-4xl">Lead Inbox</h1>
               </div>
               <span data-testid="admin-lead-count" className="font-mono2 text-sm text-slate-500">
@@ -163,14 +163,14 @@ export default function Admin() {
                     <div className="flex flex-wrap items-center justify-between gap-3">
                       <div>
                         <span className="font-display text-lg font-bold text-[#0B1220]">{l.name}</span>
-                        <a href={`mailto:${l.email}`} className="ml-3 text-sm text-cyan-700 hover:underline">{l.email}</a>
+                        <a href={`mailto:${l.email}`} className="ml-3 text-sm text-violet-700 hover:underline">{l.email}</a>
                       </div>
                       <span className="font-mono2 text-[10px] tracking-[0.14em] text-slate-400 uppercase">
                         {new Date(l.timestamp).toLocaleString()}
                       </span>
                     </div>
                     <div className="mt-3 flex flex-wrap gap-2">
-                      <span className="font-mono2 rounded-full border border-cyan-600/25 bg-cyan-50 px-3 py-1 text-[10px] tracking-[0.14em] text-cyan-700 uppercase">{l.service}</span>
+                      <span className="font-mono2 rounded-full border border-violet-600/25 bg-violet-50 px-3 py-1 text-[10px] tracking-[0.14em] text-violet-700 uppercase">{l.service}</span>
                       {l.budget && (
                         <span className="font-mono2 rounded-full border border-slate-200 px-3 py-1 text-[10px] tracking-[0.14em] text-slate-500 uppercase">{l.budget}</span>
                       )}

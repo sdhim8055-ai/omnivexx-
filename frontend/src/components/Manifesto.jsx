@@ -32,7 +32,7 @@ export default function Manifesto() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.7 }}
-          className="font-mono2 mb-6 text-xs tracking-[0.3em] text-cyan-600 uppercase"
+          className="font-mono2 mb-6 text-xs tracking-[0.3em] text-violet-600 uppercase"
         >
           {"// The Manifesto"}
         </motion.p>
@@ -60,12 +60,12 @@ export default function Manifesto() {
                   viewport={{ once: true, margin: "-60px" }}
                   transition={{ duration: 0.8, delay: i * 0.12, ease: [0.16, 1, 0.3, 1] }}
                   data-testid={`manifesto-chapter-${c.id}`}
-                  className="group border-t border-slate-200 py-10 transition-colors duration-500 hover:border-cyan-500/50"
+                  className="group border-t border-slate-200 py-10 transition-colors duration-500 hover:border-violet-500/50"
                 >
                   <div className="flex items-baseline gap-6">
-                    <span className="font-mono2 text-sm text-cyan-600">CH.{c.id}</span>
+                    <span className="font-mono2 text-sm text-violet-600">CH.{c.id}</span>
                     <div>
-                      <h3 className="font-display text-xl font-bold text-[#0B1220] transition-colors duration-300 group-hover:text-cyan-700 sm:text-3xl">
+                      <h3 className="font-display text-xl font-bold text-[#0B1220] transition-colors duration-300 group-hover:text-violet-700 sm:text-3xl">
                         {c.title}
                       </h3>
                       <p className="mt-4 max-w-lg text-sm leading-relaxed text-slate-500 sm:text-base">
@@ -95,7 +95,7 @@ export default function Manifesto() {
               />
               <div className="absolute inset-0 bg-gradient-to-t from-[#06060A]/80 via-transparent to-transparent" />
               <div className="absolute bottom-5 left-5">
-                <span className="font-mono2 text-[10px] tracking-[0.24em] text-cyan-300 uppercase">
+                <span className="font-mono2 text-[10px] tracking-[0.24em] text-violet-300 uppercase">
                   Fig. 01 — The Machine Room
                 </span>
               </div>
@@ -114,7 +114,7 @@ export default function Manifesto() {
                 compound attention into revenue."
               </p>
               <footer className="mt-6 flex items-center gap-3">
-                <div className="h-px w-8 bg-cyan-600" />
+                <div className="h-px w-8 bg-violet-600" />
                 <span className="font-mono2 text-xs tracking-[0.18em] text-slate-500 uppercase">
                   Dhimant S Reddy — Founder
                 </span>

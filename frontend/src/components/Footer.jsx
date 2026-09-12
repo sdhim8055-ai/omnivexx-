@@ -8,7 +8,7 @@ export default function Footer() {
       <div className="mx-auto max-w-7xl px-5 pt-16 sm:px-8">
         <div className="flex flex-col items-start justify-between gap-10 pb-16 md:flex-row md:items-center">
           <div className="flex items-center gap-2.5">
-            <Hexagon className="h-6 w-6 text-cyan-400" strokeWidth={1.5} />
+            <Hexagon className="h-6 w-6 text-violet-400" strokeWidth={1.5} />
             <div>
               <span className="font-display block text-lg font-extrabold tracking-[0.18em] text-white">OMNIVEXX</span>
               <span className="font-mono2 text-[10px] tracking-[0.2em] text-slate-500 uppercase">Architecting next-gen digital dominance</span>
@@ -25,7 +25,7 @@ export default function Footer() {
                 key={l.label}
                 data-testid={l.testid}
                 onClick={() => scrollToSection(l.href)}
-                className="font-mono2 text-xs tracking-[0.2em] text-slate-400 uppercase transition-colors hover:text-cyan-400"
+                className="font-mono2 text-xs tracking-[0.2em] text-slate-400 uppercase transition-colors hover:text-violet-400"
               >
                 {l.label}
               </button>
@@ -33,7 +33,7 @@ export default function Footer() {
             <a
               data-testid="footer-admin-link"
               href="/admin"
-              className="font-mono2 text-xs tracking-[0.2em] text-slate-600 uppercase transition-colors hover:text-cyan-400"
+              className="font-mono2 text-xs tracking-[0.2em] text-slate-600 uppercase transition-colors hover:text-violet-400"
             >
               Admin
             </a>
@@ -48,7 +48,7 @@ export default function Footer() {
           <span data-testid="footer-copyright" className="font-mono2 text-[10px] tracking-[0.18em] text-slate-600 uppercase">
             © 2026 Omnivexx. All rights reserved.
           </span>
-          <a data-testid="footer-email-link" href="mailto:sdhim8055@gmail.com" className="font-mono2 text-[10px] tracking-[0.18em] text-slate-600 uppercase transition-colors hover:text-cyan-400">
+          <a data-testid="footer-email-link" href="mailto:sdhim8055@gmail.com" className="font-mono2 text-[10px] tracking-[0.18em] text-slate-600 uppercase transition-colors hover:text-violet-400">
             sdhim8055@gmail.com
           </a>
         </div>

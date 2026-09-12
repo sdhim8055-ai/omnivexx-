@@ -29,7 +29,7 @@ export default function Services() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.7 }}
-          className="font-mono2 mb-6 text-xs tracking-[0.3em] text-cyan-600 uppercase"
+          className="font-mono2 mb-6 text-xs tracking-[0.3em] text-violet-600 uppercase"
         >
           {"// Capabilities Index"}
         </motion.p>
@@ -62,7 +62,7 @@ export default function Services() {
                   onClick={() => setOpen(isOpen ? null : s.id)}
                   className="flex w-full items-center gap-5 px-2 py-7 text-left sm:gap-10 sm:px-6 sm:py-9"
                 >
-                  <span className={`font-mono2 text-sm transition-colors duration-300 ${isOpen ? "text-cyan-600" : "text-slate-400 group-hover:text-cyan-600"}`}>
+                  <span className={`font-mono2 text-sm transition-colors duration-300 ${isOpen ? "text-violet-600" : "text-slate-400 group-hover:text-violet-600"}`}>
                     {s.id}
                   </span>
                   <span className={`font-display flex-1 text-lg font-bold tracking-tight transition-all duration-500 sm:text-3xl lg:text-4xl ${isOpen ? "gradient-text" : "text-[#0B1220] group-hover:translate-x-2"}`}>
@@ -71,7 +71,7 @@ export default function Services() {
                   <span className="font-mono2 hidden rounded-full border border-slate-200 px-3 py-1 text-[10px] tracking-[0.2em] text-slate-500 uppercase md:block">
                     {s.tag}
                   </span>
-                  <Plus className={`h-5 w-5 shrink-0 text-cyan-600 transition-transform duration-500 ${isOpen ? "rotate-45" : ""}`} />
+                  <Plus className={`h-5 w-5 shrink-0 text-violet-600 transition-transform duration-500 ${isOpen ? "rotate-45" : ""}`} />
                 </button>
 
                 <AnimatePresence initial={false}>
@@ -88,7 +88,7 @@ export default function Services() {
                           <p className="max-w-xl text-sm leading-relaxed text-slate-500 sm:text-base">{s.desc}</p>
                           <div className="mt-6 flex flex-wrap gap-2">
                             {s.stack.map((t) => (
-                              <span key={t} className="font-mono2 rounded-full border border-cyan-600/25 bg-cyan-50 px-3 py-1 text-[10px] tracking-[0.16em] text-cyan-700 uppercase">
+                              <span key={t} className="font-mono2 rounded-full border border-violet-600/25 bg-violet-50 px-3 py-1 text-[10px] tracking-[0.16em] text-violet-700 uppercase">
                                 {t}
                               </span>
                             ))}
@@ -102,7 +102,7 @@ export default function Services() {
                           <button
                             data-testid={`service-book-${s.id}`}
                             onClick={() => bookService(s.title)}
-                            className="group/btn flex items-center gap-2 rounded-full border border-cyan-600/40 px-5 py-2.5 font-mono2 text-xs font-bold tracking-[0.14em] text-cyan-700 uppercase transition-all duration-300 hover:bg-cyan-500 hover:text-white"
+                            className="group/btn flex items-center gap-2 rounded-full border border-violet-600/40 px-5 py-2.5 font-mono2 text-xs font-bold tracking-[0.14em] text-violet-700 uppercase transition-all duration-300 hover:bg-violet-500 hover:text-white"
                           >
                             Deploy This
                             <ArrowUpRight className="h-3.5 w-3.5 transition-transform duration-300 group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5" />

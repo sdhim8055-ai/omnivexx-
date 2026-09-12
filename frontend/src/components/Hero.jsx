@@ -1,7 +1,17 @@
-import { useRef } from "react";
-import { motion, useMotionValue, useSpring, useTransform, useScroll } from "framer-motion";
+import { useEffect, useRef, useState } from "react";
+import { motion, AnimatePresence, useMotionValue, useSpring, useTransform, useScroll } from "framer-motion";
 import { ArrowDown, ArrowUpRight, Sparkles } from "lucide-react";
 import { scrollToSection } from "@/App";
+
+const ROTATING = [
+  "Digital ADS & Marketing",
+  "Influencer Marketing",
+  "Data Science",
+  "Trading Bots & Indicators",
+  "Social Media Farming",
+  "SaaS Engineering",
+  "Startup Incubation",
+];
 
 const LINES = [
   { text: "WE ENGINEER", accent: false },
@@ -27,6 +37,11 @@ const ORBS = [
 
 export default function Hero() {
   const sectionRef = useRef(null);
+  const [rotIdx, setRotIdx] = useState(0);
+  useEffect(() => {
+    const t = setInterval(() => setRotIdx((i) => (i + 1) % ROTATING.length), 2800);
+    return () => clearInterval(t);
+  }, []);
   const mx = useMotionValue(0.5);
   const my = useMotionValue(0.5);
   const sx = useSpring(mx, { stiffness: 60, damping: 20 });
@@ -135,6 +150,32 @@ export default function Hero() {
             </span>
           ))}
         </motion.h1>
+
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.8, delay: 1.15 }}
+          className="mt-7 flex items-center gap-3"
+        >
+          <span className="font-mono2 text-xs tracking-[0.28em] text-violet-300/60 uppercase sm:text-sm">
+            {"// Deploying"}
+          </span>
+          <span className="inline-flex h-7 items-center overflow-hidden sm:h-8">
+            <AnimatePresence mode="wait">
+              <motion.span
+                key={ROTATING[rotIdx]}
+                initial={{ y: 26, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                exit={{ y: -26, opacity: 0 }}
+                transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
+                data-testid="hero-rotating-headline"
+                className="gradient-text-lavender font-display text-lg font-bold tracking-tight sm:text-2xl"
+              >
+                {ROTATING[rotIdx]}
+              </motion.span>
+            </AnimatePresence>
+          </span>
+        </motion.div>
 
         <motion.p
           initial={{ opacity: 0, y: 24 }}

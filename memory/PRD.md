@@ -43,6 +43,11 @@ Website for agency "omnivexx", a tech service based agency offering: 1) Digital 
 - Lead email alerts: every new enquiry (contact form OR concierge call booking) triggers an instant email to the owner via Emergent-managed Resend proxy (non-blocking asyncio task, guardrail-gated template). Verified in logs: "Lead notification emailed to owner".
 - Hero redesigned to purple/lavender theme: aurora glow, 3 floating lavender/violet/fuchsia orbs, 2 counter-rotating orbital rings reacting to cursor, shimmer beam, masked line reveal with lavender gradient "DIGITAL", scroll-driven parallax (content lifts + fades, grid scales on scroll).
 
+## Implemented (2026-09-12, update 4)
+- Site-wide accent switched from cyan to violet/lavender (all sections, buttons, chat widget, admin, gradients, glows) to match the purple hero
+- Full-screen animated mobile menu (staggered oversized links, violet aurora bg, CTA + status) behind hamburger on <md screens
+- Hero rotating headline: "// DEPLOYING <service>" cycles through all 7 services every 2.8s with vertical roll animation
+
 ## Backlog / Remaining
 - P0: none
 - P1: Replace sample case studies + stats with real client results; email notification to founder on new lead (Resend)

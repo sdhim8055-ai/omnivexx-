@@ -41,7 +41,7 @@ export default function CaseStudies() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.7 }}
-          className="font-mono2 mb-6 text-xs tracking-[0.3em] text-cyan-600 uppercase"
+          className="font-mono2 mb-6 text-xs tracking-[0.3em] text-violet-600 uppercase"
         >
           {"// Field Notes"}
         </motion.p>
@@ -76,7 +76,7 @@ export default function CaseStudies() {
               viewport={{ once: true, margin: "-60px" }}
               transition={{ duration: 0.9, delay: i * 0.12, ease: [0.16, 1, 0.3, 1] }}
               data-testid={`case-study-${c.id}`}
-              className="group flex flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm transition-shadow duration-500 hover:shadow-[0_20px_60px_rgba(6,182,212,0.15)]"
+              className="group flex flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm transition-shadow duration-500 hover:shadow-[0_20px_60px_rgba(168,85,247,0.15)]"
             >
               <div className="relative aspect-[16/10] overflow-hidden">
                 <img
@@ -85,7 +85,7 @@ export default function CaseStudies() {
                   className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#0B1220]/60 to-transparent" />
-                <span className="font-mono2 absolute left-4 top-4 rounded-full bg-[#06060A]/70 px-3 py-1 text-[10px] tracking-[0.2em] text-cyan-300 uppercase backdrop-blur-sm">
+                <span className="font-mono2 absolute left-4 top-4 rounded-full bg-[#06060A]/70 px-3 py-1 text-[10px] tracking-[0.2em] text-violet-300 uppercase backdrop-blur-sm">
                   Case {c.id}
                 </span>
                 <span className="font-display absolute bottom-4 left-4 text-xl font-bold text-white">
@@ -97,7 +97,7 @@ export default function CaseStudies() {
                 <h3 className="font-display text-lg font-bold text-[#0B1220] sm:text-xl">{c.title}</h3>
                 <div className="mt-3 flex flex-wrap gap-2">
                   {c.services.map((s) => (
-                    <span key={s} className="font-mono2 rounded-full border border-cyan-600/25 bg-cyan-50 px-2.5 py-0.5 text-[10px] tracking-[0.14em] text-cyan-700 uppercase">
+                    <span key={s} className="font-mono2 rounded-full border border-violet-600/25 bg-violet-50 px-2.5 py-0.5 text-[10px] tracking-[0.14em] text-violet-700 uppercase">
                       {s}
                     </span>
                   ))}
@@ -113,7 +113,7 @@ export default function CaseStudies() {
                     data-testid={`case-study-cta-${c.id}`}
                     onClick={() => scrollToSection("#contact")}
                     aria-label={`Discuss a project like ${c.title}`}
-                    className="flex h-9 w-9 items-center justify-center rounded-full border border-cyan-600/40 text-cyan-700 transition-all duration-300 hover:bg-cyan-500 hover:text-white"
+                    className="flex h-9 w-9 items-center justify-center rounded-full border border-violet-600/40 text-violet-700 transition-all duration-300 hover:bg-violet-500 hover:text-white"
                   >
                     <ArrowUpRight className="h-4 w-4" />
                   </button>

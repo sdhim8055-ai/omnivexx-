@@ -27,7 +27,7 @@ function Counter({ value, prefix = "", suffix = "", decimals = 0, testid }) {
     <span ref={ref} data-testid={testid} className="font-mono2 text-4xl font-black tracking-tighter text-[#0B1220] sm:text-6xl lg:text-7xl">
       {prefix}
       {display.toFixed(decimals)}
-      <span className="text-cyan-600">{suffix}</span>
+      <span className="text-violet-600">{suffix}</span>
     </span>
   );
 }

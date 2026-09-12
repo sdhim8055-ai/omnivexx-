@@ -108,7 +108,7 @@ export default function ChatWidget() {
     }
   };
 
-  const bookInputCls = "w-full rounded-lg border border-white/10 bg-[#06060A] px-3 py-2.5 text-sm text-white placeholder:text-slate-600 outline-none transition-colors focus:border-cyan-400/60";
+  const bookInputCls = "w-full rounded-lg border border-white/10 bg-[#06060A] px-3 py-2.5 text-sm text-white placeholder:text-slate-600 outline-none transition-colors focus:border-violet-400/60";
 
   return (
     <>
@@ -119,7 +119,7 @@ export default function ChatWidget() {
         data-testid="chat-widget-toggle"
         onClick={() => setOpen(!open)}
         aria-label="Open AI concierge chat"
-        className="fixed bottom-6 right-6 z-[90] flex h-14 w-14 items-center justify-center rounded-full bg-cyan-400 text-[#06060A] shadow-[0_0_30px_rgba(6,182,212,0.45)] transition-transform duration-300 hover:scale-110"
+        className="fixed bottom-6 right-6 z-[90] flex h-14 w-14 items-center justify-center rounded-full bg-violet-400 text-[#06060A] shadow-[0_0_30px_rgba(168,85,247,0.45)] transition-transform duration-300 hover:scale-110"
       >
         {open ? <X className="h-6 w-6" /> : <MessageSquare className="h-6 w-6" />}
       </motion.button>
@@ -136,8 +136,8 @@ export default function ChatWidget() {
           >
             <div className="flex items-center justify-between border-b border-white/10 px-5 py-4">
               <div className="flex items-center gap-3">
-                <div className="flex h-9 w-9 items-center justify-center rounded-lg border border-cyan-400/30 bg-cyan-400/10">
-                  <Bot className="h-5 w-5 text-cyan-400" />
+                <div className="flex h-9 w-9 items-center justify-center rounded-lg border border-violet-400/30 bg-violet-400/10">
+                  <Bot className="h-5 w-5 text-violet-400" />
                 </div>
                 <div>
                   <span className="font-display block text-sm font-bold text-white">VEXX</span>
@@ -147,7 +147,7 @@ export default function ChatWidget() {
               <button
                 data-testid="chat-book-call-button"
                 onClick={() => setMode(mode === "book" ? "chat" : "book")}
-                className="flex items-center gap-1.5 rounded-full border border-cyan-400/40 px-3 py-1.5 font-mono2 text-[10px] font-bold tracking-[0.14em] text-cyan-400 uppercase transition-colors hover:bg-cyan-400 hover:text-[#06060A]"
+                className="flex items-center gap-1.5 rounded-full border border-violet-400/40 px-3 py-1.5 font-mono2 text-[10px] font-bold tracking-[0.14em] text-violet-400 uppercase transition-colors hover:bg-violet-400 hover:text-[#06060A]"
               >
                 <CalendarCheck className="h-3.5 w-3.5" />
                 Book a Call
@@ -166,7 +166,7 @@ export default function ChatWidget() {
                   data-testid="chat-booking-submit-button"
                   type="submit"
                   disabled={booking}
-                  className="mt-auto flex items-center justify-center gap-2 rounded-full bg-cyan-400 py-3 font-mono2 text-xs font-bold tracking-[0.14em] text-[#06060A] uppercase transition-colors hover:bg-white disabled:opacity-60"
+                  className="mt-auto flex items-center justify-center gap-2 rounded-full bg-violet-400 py-3 font-mono2 text-xs font-bold tracking-[0.14em] text-[#06060A] uppercase transition-colors hover:bg-white disabled:opacity-60"
                 >
                   {booking ? <Loader2 className="h-4 w-4 animate-spin" /> : "Confirm Booking"}
                 </button>
@@ -179,11 +179,11 @@ export default function ChatWidget() {
                       <div
                         className={`max-w-[85%] rounded-2xl px-4 py-2.5 text-sm leading-relaxed ${
                           m.role === "user"
-                            ? "rounded-br-sm bg-cyan-400 text-[#06060A]"
+                            ? "rounded-br-sm bg-violet-400 text-[#06060A]"
                             : "rounded-bl-sm border border-white/10 bg-white/5 text-slate-200"
                         }`}
                       >
-                        {m.text || <Loader2 className="h-4 w-4 animate-spin text-cyan-400" />}
+                        {m.text || <Loader2 className="h-4 w-4 animate-spin text-violet-400" />}
                       </div>
                     </div>
                   ))}
@@ -194,7 +194,7 @@ export default function ChatWidget() {
                           key={c}
                           data-testid={`chat-chip-${c.split(" ")[0].toLowerCase()}`}
                           onClick={() => send(c)}
-                          className="rounded-full border border-white/15 px-3 py-1.5 text-xs text-slate-300 transition-colors hover:border-cyan-400/50 hover:text-cyan-300"
+                          className="rounded-full border border-white/15 px-3 py-1.5 text-xs text-slate-300 transition-colors hover:border-violet-400/50 hover:text-violet-300"
                         >
                           {c}
                         </button>
@@ -210,14 +210,14 @@ export default function ChatWidget() {
                     onChange={(e) => setInput(e.target.value)}
                     onKeyDown={(e) => e.key === "Enter" && send()}
                     placeholder="Ask VEXX anything..."
-                    className="flex-1 rounded-full border border-white/10 bg-[#06060A] px-4 py-2.5 text-sm text-white placeholder:text-slate-600 outline-none transition-colors focus:border-cyan-400/60"
+                    className="flex-1 rounded-full border border-white/10 bg-[#06060A] px-4 py-2.5 text-sm text-white placeholder:text-slate-600 outline-none transition-colors focus:border-violet-400/60"
                   />
                   <button
                     data-testid="chat-send-button"
                     onClick={() => send()}
                     disabled={streaming || !input.trim()}
                     aria-label="Send message"
-                    className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-cyan-400 text-[#06060A] transition-colors hover:bg-white disabled:opacity-50"
+                    className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-violet-400 text-[#06060A] transition-colors hover:bg-white disabled:opacity-50"
                   >
                     <Send className="h-4 w-4" />
                   </button>
