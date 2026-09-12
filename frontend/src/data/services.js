@@ -14,9 +14,9 @@ export const SERVICES_DATA = [
       { step: "04", title: "Scale Winners", desc: "Budgets ramped on proven winners while fresh creatives keep fatigue away. Weekly reporting, zero fluff." },
     ],
     pricing: [
-      { label: "Starter Sprint", range: "$1.5K – $3K", note: "One platform, 4-week testing sprint, tracking setup included" },
-      { label: "Growth Engine", range: "$3K – $8K", note: "Two platforms, creative production, landing page CRO" },
-      { label: "Full Domination", range: "$8K+", note: "Multi-channel scale program with dedicated strategist" },
+      { label: "Starter Sprint", range: "₹15K – ₹30K", note: "One platform, 4-week testing sprint, tracking setup included" },
+      { label: "Growth Engine", range: "₹30K – ₹75K", note: "Two platforms, creative production, landing page CRO" },
+      { label: "Full Domination", range: "₹75K+", note: "Multi-channel scale program with dedicated strategist" },
     ],
     faqs: [
       { q: "Is ad spend included in the fee?", a: "No — ad spend is paid directly to the platforms by you. Our fee covers strategy, creative, management and optimization." },
@@ -39,9 +39,9 @@ export const SERVICES_DATA = [
       { step: "04", title: "Reporting & UGC Rights", desc: "Performance tracked per creator; winning content licensed for your paid ads." },
     ],
     pricing: [
-      { label: "Seeding Pack", range: "$1K – $2.5K", note: "10–20 nano/micro creators, product seeding campaigns" },
-      { label: "Growth Collab", range: "$2.5K – $6K", note: "Mid-tier creators with scripted content and usage rights" },
-      { label: "Tier-1 Push", range: "$6K+", note: "Large creators, multi-platform launches, whitelisting" },
+      { label: "Seeding Pack", range: "₹10K – ₹25K", note: "10–20 nano/micro creators, product seeding campaigns" },
+      { label: "Growth Collab", range: "₹25K – ₹60K", note: "Mid-tier creators with scripted content and usage rights" },
+      { label: "Tier-1 Push", range: "₹60K+", note: "Large creators, multi-platform launches, whitelisting" },
     ],
     faqs: [
       { q: "Do you guarantee sales from influencers?", a: "We guarantee vetted creators, professional execution and full tracking. Sales depend on offer strength — which we help sharpen." },
@@ -64,9 +64,9 @@ export const SERVICES_DATA = [
       { step: "04", title: "Automation & Monitoring", desc: "Alerts, anomaly detection and self-healing jobs so the system runs without babysitting." },
     ],
     pricing: [
-      { label: "Pipeline Setup", range: "$2K – $5K", note: "Core sources connected, warehouse live, 2 dashboards" },
-      { label: "Analytics Stack", range: "$5K – $12K", note: "Full stack with modelling, alerting and team training" },
-      { label: "Data Partner", range: "$12K+", note: "Ongoing data engineering retainer with monthly models" },
+      { label: "Pipeline Setup", range: "₹20K – ₹50K", note: "Core sources connected, warehouse live, 2 dashboards" },
+      { label: "Analytics Stack", range: "₹50K – ₹1.2L", note: "Full stack with modelling, alerting and team training" },
+      { label: "Data Partner", range: "₹1.2L+", note: "Ongoing data engineering retainer with monthly models" },
     ],
     faqs: [
       { q: "We have messy data everywhere. Can you still help?", a: "That's the normal starting point. The audit phase exists precisely to tame scattered sources into one clean structure." },
@@ -89,9 +89,9 @@ export const SERVICES_DATA = [
       { step: "04", title: "Live Deployment", desc: "Bot deployed with hard risk limits, kill-switches and live monitoring dashboards." },
     ],
     pricing: [
-      { label: "Custom Indicator", range: "$300 – $800", note: "Single PineScript/Python indicator with alerts" },
-      { label: "Strategy + Backtest", range: "$1K – $3K", note: "Full strategy build with backtest report" },
-      { label: "Live Bot", range: "$3K – $8K", note: "Deployed execution bot with risk engine and monitoring" },
+      { label: "Custom Indicator", range: "₹5K – ₹12K", note: "Single PineScript/Python indicator with alerts" },
+      { label: "Strategy + Backtest", range: "₹15K – ₹40K", note: "Full strategy build with backtest report" },
+      { label: "Live Bot", range: "₹40K – ₹1L", note: "Deployed execution bot with risk engine and monitoring" },
     ],
     faqs: [
       { q: "Do you guarantee profits?", a: "No — and run from anyone who does. We guarantee rigorous engineering, honest backtests and strict risk controls. Markets always carry risk." },
@@ -114,9 +114,9 @@ export const SERVICES_DATA = [
       { step: "04", title: "Authority Scaling", desc: "Compounding followers into community, community into inbound leads." },
     ],
     pricing: [
-      { label: "Foundation", range: "$800 – $1.5K", note: "Profile overhaul, content system, 30-day calendar" },
-      { label: "Growth Engine", range: "$1.5K – $4K", note: "Daily content, engagement loops, monthly reporting" },
-      { label: "Authority Program", range: "$4K+", note: "Multi-platform dominance with community funnels" },
+      { label: "Foundation", range: "₹8K – ₹15K", note: "Profile overhaul, content system, 30-day calendar" },
+      { label: "Growth Engine", range: "₹15K – ₹40K", note: "Daily content, engagement loops, monthly reporting" },
+      { label: "Authority Program", range: "₹40K+", note: "Multi-platform dominance with community funnels" },
     ],
     faqs: [
       { q: "Is this against platform rules?", a: "We operate within platform guidelines — smart systems and consistency, not spam. Account safety is the first design constraint." },
@@ -139,8 +139,8 @@ export const SERVICES_DATA = [
       { step: "04", title: "Launch & Scale", desc: "Deployment, monitoring, performance tuning and post-launch iteration." },
     ],
     pricing: [
-      { label: "MVP Build", range: "$5K – $15K", note: "Core product live in 4–8 weeks" },
-      { label: "Product Scale", range: "$15K – $40K", note: "Full feature set, payments, admin, analytics" },
+      { label: "MVP Build", range: "₹50K – ₹1.5L", note: "Core product live in 4–8 weeks" },
+      { label: "Product Scale", range: "₹1.5L – ₹4L", note: "Full feature set, payments, admin, analytics" },
       { label: "Tech Partner", range: "Retainer", note: "Ongoing engineering team on tap" },
     ],
     faqs: [
@@ -164,8 +164,8 @@ export const SERVICES_DATA = [
       { step: "04", title: "Fundraising Support", desc: "Intro prep, data-room hygiene and technical due-diligence support through the raise." },
     ],
     pricing: [
-      { label: "Validation Sprint", range: "$1.5K – $3K", note: "2-week validation with landing tests and report" },
-      { label: "Venture Build", range: "$8K – $20K", note: "MVP + GTM + pitch, the full launch package" },
+      { label: "Validation Sprint", range: "₹15K – ₹30K", note: "2-week validation with landing tests and report" },
+      { label: "Venture Build", range: "₹80K – ₹2L", note: "MVP + GTM + pitch, the full launch package" },
       { label: "Co-Build Equity", range: "Hybrid", note: "Reduced cash + equity for selected ventures" },
     ],
     faqs: [

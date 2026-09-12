@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import axios from "axios";
-import { Hexagon, LogOut, RefreshCw, Inbox, Eye, MessageSquare } from "lucide-react";
+import { toast } from "sonner";
+import { Hexagon, LogOut, RefreshCw, Inbox, Eye, MessageSquare, Reply, Send, CheckCircle2, Mail } from "lucide-react";
 
 const API = `${process.env.REACT_APP_BACKEND_URL}/api`;
 const TOKEN_KEY = "omnivexx_admin_token";
@@ -16,12 +17,18 @@ export default function Admin() {
   const [loading, setLoading] = useState(false);
   const [leads, setLeads] = useState(null);
   const [stats, setStats] = useState(null);
+  const [replyFor, setReplyFor] = useState(null);
+  const [replyText, setReplyText] = useState("");
+  const [replySending, setReplySending] = useState(false);
+  const [digestSending, setDigestSending] = useState(false);
+
+  const authHeaders = (t) => ({ Authorization: `Bearer ${t}` });
 
   const loadData = async (t) => {
     try {
       const [leadsRes, statsRes] = await Promise.all([
-        axios.get(`${API}/leads`, { headers: { Authorization: `Bearer ${t}` } }),
-        axios.get(`${API}/analytics/summary`, { headers: { Authorization: `Bearer ${t}` } }),
+        axios.get(`${API}/leads`, { headers: authHeaders(t) }),
+        axios.get(`${API}/analytics/summary`, { headers: authHeaders(t) }),
       ]);
       setLeads(leadsRes.data);
       setStats(statsRes.data);
@@ -60,6 +67,37 @@ export default function Admin() {
     setStats(null);
   };
 
+  const sendReply = async (leadId) => {
+    if (!replyText.trim()) {
+      toast.error("Write a reply first");
+      return;
+    }
+    setReplySending(true);
+    try {
+      await axios.post(`${API}/leads/${leadId}/reply`, { message: replyText }, { headers: authHeaders(token) });
+      toast.success("Reply emailed to the lead");
+      setLeads((ls) => ls.map((l) => (l.id === leadId ? { ...l, replied: true } : l)));
+      setReplyFor(null);
+      setReplyText("");
+    } catch {
+      toast.error("Reply failed to send");
+    } finally {
+      setReplySending(false);
+    }
+  };
+
+  const sendDigestNow = async () => {
+    setDigestSending(true);
+    try {
+      await axios.post(`${API}/analytics/digest-now`, {}, { headers: authHeaders(token) });
+      toast.success("Digest emailed to sdhim8055@gmail.com");
+    } catch {
+      toast.error("Digest failed to send");
+    } finally {
+      setDigestSending(false);
+    }
+  };
+
   const STAT_CARDS = stats
     ? [
         { label: "Visits This Week", week: stats.week_pageviews, total: stats.total_pageviews, icon: Eye, testid: "stats-visits" },
@@ -75,10 +113,18 @@ export default function Admin() {
           <a data-testid="admin-home-link" href="/" className="flex items-center gap-2.5">
             <Hexagon className="h-6 w-6 text-violet-600" strokeWidth={1.5} />
             <span className="font-display text-lg font-extrabold tracking-[0.18em] text-[#0B1220]">OMNIVEXX</span>
-            <span className="font-mono2 rounded-full bg-violet-50 px-2.5 py-1 text-[10px] tracking-[0.2em] text-violet-700 uppercase">Lead Inbox</span>
+            <span className="font-mono2 hidden rounded-full bg-violet-50 px-2.5 py-1 text-[10px] tracking-[0.2em] text-violet-700 uppercase sm:inline">Lead Inbox</span>
           </a>
           {token && (
             <div className="flex items-center gap-3">
+              <button
+                data-testid="admin-digest-now-button"
+                onClick={sendDigestNow}
+                disabled={digestSending}
+                className="hidden items-center gap-2 rounded-full border border-slate-200 px-4 py-2 font-mono2 text-xs tracking-[0.14em] text-slate-600 uppercase transition-colors hover:border-violet-500 hover:text-violet-600 disabled:opacity-50 sm:flex"
+              >
+                <Mail className="h-3.5 w-3.5" /> {digestSending ? "Sending..." : "Digest Now"}
+              </button>
               <button
                 data-testid="admin-refresh-button"
                 onClick={() => loadData(token)}
@@ -199,13 +245,27 @@ export default function Admin() {
                     className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm"
                   >
                     <div className="flex flex-wrap items-center justify-between gap-3">
-                      <div>
+                      <div className="flex flex-wrap items-center gap-3">
                         <span className="font-display text-lg font-bold text-[#0B1220]">{l.name}</span>
-                        <a href={`mailto:${l.email}`} className="ml-3 text-sm text-violet-700 hover:underline">{l.email}</a>
+                        <a href={`mailto:${l.email}`} className="text-sm text-violet-700 hover:underline">{l.email}</a>
+                        {l.replied && (
+                          <span data-testid={`admin-lead-replied-${l.id}`} className="flex items-center gap-1 rounded-full bg-emerald-50 px-2.5 py-1 font-mono2 text-[10px] tracking-[0.14em] text-emerald-600 uppercase">
+                            <CheckCircle2 className="h-3 w-3" /> Replied
+                          </span>
+                        )}
                       </div>
-                      <span className="font-mono2 text-[10px] tracking-[0.14em] text-slate-400 uppercase">
-                        {new Date(l.timestamp).toLocaleString()}
-                      </span>
+                      <div className="flex items-center gap-3">
+                        <span className="font-mono2 text-[10px] tracking-[0.14em] text-slate-400 uppercase">
+                          {new Date(l.timestamp).toLocaleString()}
+                        </span>
+                        <button
+                          data-testid={`admin-reply-toggle-${l.id}`}
+                          onClick={() => { setReplyFor(replyFor === l.id ? null : l.id); setReplyText(""); }}
+                          className="flex items-center gap-1.5 rounded-full border border-violet-500/40 px-3.5 py-1.5 font-mono2 text-[10px] font-bold tracking-[0.14em] text-violet-700 uppercase transition-colors hover:bg-violet-500 hover:text-white"
+                        >
+                          <Reply className="h-3 w-3" /> Reply
+                        </button>
+                      </div>
                     </div>
                     <div className="mt-3 flex flex-wrap gap-2">
                       <span className="font-mono2 rounded-full border border-violet-600/25 bg-violet-50 px-3 py-1 text-[10px] tracking-[0.14em] text-violet-700 uppercase">{l.service}</span>
@@ -214,6 +274,39 @@ export default function Admin() {
                       )}
                     </div>
                     <p className="mt-4 text-sm leading-relaxed text-slate-600">{l.message}</p>
+
+                    {replyFor === l.id && (
+                      <motion.div
+                        initial={{ opacity: 0, height: 0 }}
+                        animate={{ opacity: 1, height: "auto" }}
+                        transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+                        className="overflow-hidden"
+                      >
+                        <div className="mt-5 rounded-xl border border-violet-200 bg-violet-50/50 p-4">
+                          <textarea
+                            data-testid={`admin-reply-textarea-${l.id}`}
+                            value={replyText}
+                            onChange={(e) => setReplyText(e.target.value)}
+                            placeholder={`Write your reply to ${l.name}...`}
+                            rows={4}
+                            className={`${inputCls} resize-none border-violet-200`}
+                          />
+                          <div className="mt-3 flex items-center justify-between gap-3">
+                            <span className="font-mono2 text-[10px] tracking-[0.14em] text-slate-400 uppercase">
+                              Sent from Omnivexx to {l.email}
+                            </span>
+                            <button
+                              data-testid={`admin-reply-send-${l.id}`}
+                              onClick={() => sendReply(l.id)}
+                              disabled={replySending}
+                              className="flex items-center gap-2 rounded-full bg-violet-500 px-5 py-2.5 font-mono2 text-xs font-bold tracking-[0.14em] text-white uppercase transition-colors hover:bg-[#0B1220] disabled:opacity-60"
+                            >
+                              <Send className="h-3.5 w-3.5" /> {replySending ? "Sending..." : "Send Reply"}
+                            </button>
+                          </div>
+                        </div>
+                      </motion.div>
+                    )}
                   </motion.div>
                 ))}
               </div>

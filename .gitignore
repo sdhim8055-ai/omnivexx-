@@ -83,3 +83,16 @@ android-sdk/
 
 # overlay black-box crash/user-report dumps — session data, never history
 **/.emergent/recordings/
+
+# Secrets — never commit
+.env
+**/.env
+!**/.env.example
+
+# CRA build output
+build/
+
+# Project-local memory/docs not for the repo
+memory/
+design_guidelines.json
+auth_testing.md

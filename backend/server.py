@@ -256,6 +256,7 @@ class Lead(BaseModel):
     service: str
     budget: str = ""
     message: str
+    replied: bool = False
     timestamp: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
 
 
@@ -310,6 +311,112 @@ async def analytics_summary(admin=Depends(get_current_admin)):
         "total_chats": await db.analytics.count_documents({"type": "chat"}),
         "total_leads": await db.leads.count_documents({}),
     }
+
+
+# ---------- Weekly digest (Sundays 9:00 AM IST) ----------
+async def _week_stats() -> dict:
+    week_ago = (datetime.now(timezone.utc) - timedelta(days=7)).isoformat()
+    week_events = await db.analytics.find({"ts": {"$gte": week_ago}}, {"_id": 0}).to_list(100000)
+    return {
+        "week_ago": week_ago,
+        "pageviews": sum(1 for e in week_events if e["type"] == "pageview"),
+        "chats": sum(1 for e in week_events if e["type"] == "chat"),
+        "leads": await db.leads.count_documents({"timestamp": {"$gte": week_ago}}),
+    }
+
+
+async def send_weekly_digest() -> None:
+    stats = await _week_stats()
+    leads = await db.leads.find(
+        {"timestamp": {"$gte": stats["week_ago"]}}, {"_id": 0}
+    ).sort("timestamp", -1).to_list(50)
+    lead_rows = "".join(
+        f'<tr><td style="padding:8px 16px;font-family:Arial,sans-serif;font-size:13px;color:#0B1220">{escape(l["name"])}</td>'
+        f'<td style="padding:8px 16px;font-family:Arial,sans-serif;font-size:13px;color:#0B1220">{escape(l["service"])}</td>'
+        f'<td style="padding:8px 16px;font-family:Arial,sans-serif;font-size:13px"><a href="mailto:{escape(l["email"])}" style="color:#7C3AED">{escape(l["email"])}</a></td></tr>'
+        for l in leads
+    ) or '<tr><td style="padding:8px 16px;font-family:Arial,sans-serif;font-size:13px;color:#94A3B8">No new leads this week.</td></tr>'
+    html = (
+        '<table role="presentation" width="100%" style="background:#F4F7FB;padding:32px 0"><tr><td align="center">'
+        '<table role="presentation" width="560" style="background:#FFFFFF;border:1px solid #E2E8F0;border-radius:16px;padding:32px">'
+        '<tr><td style="font-family:Arial,sans-serif;font-size:20px;font-weight:bold;color:#0B1220;padding-bottom:4px">Your week at Omnivexx</td></tr>'
+        '<tr><td style="font-family:Arial,sans-serif;font-size:12px;color:#7C3AED;letter-spacing:3px;text-transform:uppercase;padding-bottom:20px">Weekly Digest</td></tr>'
+        '<tr><td><table role="presentation" width="100%" style="border-top:1px solid #E2E8F0">'
+        + _lead_row("Site visits", str(stats["pageviews"]))
+        + _lead_row("VEXX chats", str(stats["chats"]))
+        + _lead_row("New leads", str(stats["leads"]))
+        + '</table></td></tr>'
+        '<tr><td style="padding-top:20px;font-family:Arial,sans-serif;font-size:14px;font-weight:bold;color:#0B1220">New enquiries</td></tr>'
+        f'<tr><td><table role="presentation" width="100%">{lead_rows}</table></td></tr>'
+        '<tr><td style="padding-top:24px;font-family:Arial,sans-serif;font-size:11px;color:#94A3B8">'
+        'Sent by the Omnivexx website every Sunday morning (IST).</td></tr>'
+        '</table></td></tr></table>'
+    )
+    await send_email(
+        to=OWNER_EMAIL,
+        subject=f"Omnivexx Weekly Digest — {stats['leads']} new leads, {stats['pageviews']} visits",
+        html=html,
+    )
+    logger.info("Weekly digest emailed to owner")
+
+
+async def digest_loop():
+    while True:
+        try:
+            now_ist = datetime.now(timezone.utc) + timedelta(hours=5, minutes=30)
+            if now_ist.weekday() == 6 and now_ist.hour == 9:
+                iso = now_ist.isocalendar()
+                key = f"digest:{iso.year}-W{iso.week:02d}"
+                if not await db.meta.find_one({"key": key}):
+                    await send_weekly_digest()
+                    await db.meta.insert_one({"key": key, "sent_at": datetime.now(timezone.utc).isoformat()})
+        except Exception as e:
+            logger.error(f"Digest loop error: {e}")
+        await asyncio.sleep(1800)
+
+
+@app.on_event("startup")
+async def start_digest_loop():
+    asyncio.create_task(digest_loop())
+
+
+class ReplyInput(BaseModel):
+    message: str
+
+
+@api_router.post("/leads/{lead_id}/reply")
+async def reply_to_lead(lead_id: str, input: ReplyInput, admin=Depends(get_current_admin)):
+    lead = await db.leads.find_one({"id": lead_id}, {"_id": 0})
+    if not lead:
+        raise HTTPException(status_code=404, detail="Lead not found")
+    if not input.message.strip():
+        raise HTTPException(status_code=400, detail="Reply message is empty")
+    body_html = "<br>".join(escape(input.message).splitlines())
+    html = (
+        '<table role="presentation" width="100%" style="background:#F4F7FB;padding:32px 0"><tr><td align="center">'
+        '<table role="presentation" width="560" style="background:#FFFFFF;border:1px solid #E2E8F0;border-radius:16px;padding:32px">'
+        '<tr><td style="font-family:Arial,sans-serif;font-size:12px;color:#7C3AED;letter-spacing:3px;text-transform:uppercase;padding-bottom:16px">Omnivexx</td></tr>'
+        f'<tr><td style="font-family:Arial,sans-serif;font-size:15px;color:#0B1220;line-height:1.7">{body_html}</td></tr>'
+        '<tr><td style="padding-top:28px;border-top:1px solid #E2E8F0;font-family:Arial,sans-serif;font-size:12px;color:#64748B">'
+        'Dhimant S Reddy — Founder, Omnivexx<br>+91 6361751228</td></tr>'
+        '</table></td></tr></table>'
+    )
+    await send_email(
+        to=lead["email"],
+        subject=f"Re: Your Omnivexx enquiry — {lead['service']}",
+        html=html,
+    )
+    await db.leads.update_one(
+        {"id": lead_id},
+        {"$set": {"replied": True, "replied_at": datetime.now(timezone.utc).isoformat()}},
+    )
+    return {"ok": True}
+
+
+@api_router.post("/analytics/digest-now")
+async def digest_now(admin=Depends(get_current_admin)):
+    await send_weekly_digest()
+    return {"ok": True}
 
 
 class ChatInput(BaseModel):
