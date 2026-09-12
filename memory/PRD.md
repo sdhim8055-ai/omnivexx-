@@ -69,7 +69,7 @@ Website for agency "omnivexx", a tech service based agency offering: 1) Digital 
 - GitHub push DONE: 131 files pushed to https://github.com/sdhim8055-ai/omnivexx- (main branch). Verified remotely via API — key files present, zero .env/secret files leaked. Working token used via one-off push URL, never stored in git config.
 
 ## Implemented (2026-09-12, update 9)
-- Auto repo sync: /app/scripts/auto_sync.sh daemon runs in background — every 2 min, any file change in /app is auto-committed ("sync: <timestamp>") and pushed to GitHub origin/main via stored credential (~/.git-credentials, not in repo). Logs: /tmp/auto_sync.log. Note: PAT expires per its setting (user set 7 days) — auto-push stops then until a new token is stored.
+- Auto repo sync: /app/scripts/auto_sync.sh daemon runs in background — every 2 min, any file change in /app is auto-committed ("sync: <timestamp>") and pushed to GitHub origin/main via stored credential (~/.git-credentials, not in repo). Logs: /tmp/auto_sync.log. Long-lived (no-expiry) classic PAT with repo scope installed and verified with a live push (2026-09-12).
 
 ## Backlog / Remaining
 - P0: none — code is on GitHub with auto-sync
