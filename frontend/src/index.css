@@ -87,6 +87,16 @@
         background-clip: text;
         color: transparent;
     }
+    .gradient-text-lavender {
+        background: linear-gradient(135deg, #f5f3ff 5%, #c4b5fd 40%, #a855f7 70%, #e879f9 100%);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+    }
+    .text-outline-lavender {
+        -webkit-text-stroke: 1px rgba(196, 181, 253, 0.45);
+        color: transparent;
+    }
 }
 
 @keyframes marquee-slow {

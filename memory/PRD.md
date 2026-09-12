@@ -39,6 +39,10 @@ Website for agency "omnivexx", a tech service based agency offering: 1) Digital 
 - Navbar: added "Work" link; Footer: added "Admin" link
 - Verified: login wrong-pass 401 + success, leads 401 without token / 200 with token, chat SSE streams, admin UI e2e, case studies + footer render
 
+## Implemented (2026-09-12, update 3)
+- Lead email alerts: every new enquiry (contact form OR concierge call booking) triggers an instant email to the owner via Emergent-managed Resend proxy (non-blocking asyncio task, guardrail-gated template). Verified in logs: "Lead notification emailed to owner".
+- Hero redesigned to purple/lavender theme: aurora glow, 3 floating lavender/violet/fuchsia orbs, 2 counter-rotating orbital rings reacting to cursor, shimmer beam, masked line reveal with lavender gradient "DIGITAL", scroll-driven parallax (content lifts + fades, grid scales on scroll).
+
 ## Backlog / Remaining
 - P0: none
 - P1: Replace sample case studies + stats with real client results; email notification to founder on new lead (Resend)
