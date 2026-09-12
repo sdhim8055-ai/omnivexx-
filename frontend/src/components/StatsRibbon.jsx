@@ -3,8 +3,8 @@ import { motion, useInView, animate } from "framer-motion";
 
 const STATS = [
   { value: 7, suffix: "", label: "Core Disciplines", testid: "stat-disciplines" },
-  { value: 50, prefix: "$", suffix: "M+", label: "Ad Revenue Driven", testid: "stat-revenue" },
-  { value: 99.8, suffix: "%", decimals: 1, label: "Bot Win-Rate", testid: "stat-winrate" },
+  { value: 250, prefix: "$", suffix: "K+", label: "Ad Spend Managed", testid: "stat-revenue" },
+  { value: 87, suffix: "%", label: "Bot Win-Rate", testid: "stat-winrate" },
   { value: 24, suffix: "/7", label: "Global Operations", testid: "stat-ops" },
 ];
 
@@ -24,18 +24,18 @@ function Counter({ value, prefix = "", suffix = "", decimals = 0, testid }) {
   }, [inView, value]);
 
   return (
-    <span ref={ref} data-testid={testid} className="font-mono2 text-4xl font-black tracking-tighter text-white sm:text-6xl lg:text-7xl">
+    <span ref={ref} data-testid={testid} className="font-mono2 text-4xl font-black tracking-tighter text-[#0B1220] sm:text-6xl lg:text-7xl">
       {prefix}
       {display.toFixed(decimals)}
-      <span className="text-cyan-400">{suffix}</span>
+      <span className="text-cyan-600">{suffix}</span>
     </span>
   );
 }
 
 export default function StatsRibbon() {
   return (
-    <section data-testid="stats-ribbon" className="relative border-y border-white/10 bg-[#0D0E15]/60">
-      <div className="mx-auto grid max-w-7xl grid-cols-2 divide-x divide-white/10 lg:grid-cols-4">
+    <section data-testid="stats-ribbon" className="relative border-b border-slate-200 bg-white">
+      <div className="mx-auto grid max-w-7xl grid-cols-2 divide-x divide-slate-200 lg:grid-cols-4">
         {STATS.map((s, i) => (
           <motion.div
             key={s.label}

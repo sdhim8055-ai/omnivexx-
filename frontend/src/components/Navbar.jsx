@@ -4,6 +4,7 @@ import { scrollToSection } from "@/App";
 
 const LINKS = [
   { label: "Services", href: "#services", testid: "navbar-services-link" },
+  { label: "Work", href: "#work", testid: "navbar-work-link" },
   { label: "Manifesto", href: "#manifesto", testid: "navbar-about-link" },
   { label: "Contact", href: "#contact", testid: "navbar-contact-link" },
 ];

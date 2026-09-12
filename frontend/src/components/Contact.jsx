@@ -23,7 +23,7 @@ const EMAIL = "sdhim8055@gmail.com";
 const PHONE = "+91 6361751228";
 
 const inputCls =
-  "w-full rounded-lg border border-white/10 bg-[#06060A] px-4 py-3 text-sm text-white placeholder:text-slate-600 outline-none transition-colors duration-300 focus:border-cyan-400/60 focus:ring-1 focus:ring-cyan-400/30";
+  "w-full rounded-lg border border-slate-200 bg-white px-4 py-3 text-sm text-[#0B1220] placeholder:text-slate-400 outline-none transition-colors duration-300 focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500/30";
 
 export default function Contact() {
   const [form, setForm] = useState({ name: "", email: "", service: "General Enquiry", budget: "Let's discuss", message: "" });
@@ -63,16 +63,16 @@ export default function Contact() {
   };
 
   return (
-    <section id="contact" data-testid="contact-section" className="noise relative mx-auto max-w-7xl px-5 py-28 sm:px-8 sm:py-40">
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_120%,rgba(6,182,212,0.14),transparent_60%)]" />
-      <div className="relative grid gap-16 lg:grid-cols-2 lg:gap-24">
+    <section id="contact" data-testid="contact-section" className="relative bg-[#F4F7FB] px-5 py-28 sm:px-8 sm:py-40">
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_120%,rgba(6,182,212,0.12),transparent_60%)]" />
+      <div className="relative mx-auto grid max-w-7xl gap-16 lg:grid-cols-2 lg:gap-24">
         <div>
           <motion.p
             initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.7 }}
-            className="font-mono2 mb-6 text-xs tracking-[0.3em] text-cyan-400 uppercase"
+            className="font-mono2 mb-6 text-xs tracking-[0.3em] text-cyan-600 uppercase"
           >
             {"// Direct Line"}
           </motion.p>
@@ -81,7 +81,7 @@ export default function Contact() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-80px" }}
             transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
-            className="font-display text-3xl font-bold leading-tight tracking-tight text-white sm:text-5xl lg:text-6xl"
+            className="font-display text-3xl font-bold leading-tight tracking-tight text-[#0B1220] sm:text-5xl lg:text-6xl"
           >
             Talk to the
             <br />
@@ -94,42 +94,42 @@ export default function Contact() {
             viewport={{ once: true }}
             transition={{ duration: 0.9, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
             data-testid="founder-card"
-            className="mt-12 rounded-2xl border border-white/10 bg-[#0D0E15]/75 p-8 backdrop-blur-xl"
+            className="mt-12 rounded-2xl border border-slate-200 bg-white p-8 shadow-sm"
           >
             <div className="flex items-center gap-5">
-              <div className="flex h-16 w-16 items-center justify-center rounded-xl border border-cyan-400/30 bg-cyan-400/10">
-                <span className="font-display text-2xl font-extrabold text-cyan-400">DR</span>
+              <div className="flex h-16 w-16 items-center justify-center rounded-xl border border-cyan-600/30 bg-cyan-50">
+                <span className="font-display text-2xl font-extrabold text-cyan-600">DR</span>
               </div>
               <div>
-                <h3 data-testid="founder-name" className="font-display text-xl font-bold text-white">Dhimant S Reddy</h3>
-                <p className="font-mono2 text-[10px] tracking-[0.22em] text-slate-500 uppercase">Founder & Chief Architect</p>
+                <h3 data-testid="founder-name" className="font-display text-xl font-bold text-[#0B1220]">Dhimant S Reddy</h3>
+                <p className="font-mono2 text-[10px] tracking-[0.22em] text-slate-400 uppercase">Founder & Chief Architect</p>
               </div>
             </div>
 
             <div className="mt-8 space-y-3">
-              <div className="flex items-center justify-between gap-3 rounded-lg border border-white/10 bg-[#06060A] px-4 py-3">
-                <a data-testid="founder-email-link" href={`mailto:${EMAIL}`} className="flex min-w-0 items-center gap-3 text-sm text-slate-300 transition-colors hover:text-cyan-400">
-                  <Mail className="h-4 w-4 shrink-0 text-cyan-400" />
+              <div className="flex items-center justify-between gap-3 rounded-lg border border-slate-200 bg-slate-50 px-4 py-3">
+                <a data-testid="founder-email-link" href={`mailto:${EMAIL}`} className="flex min-w-0 items-center gap-3 text-sm text-slate-600 transition-colors hover:text-cyan-700">
+                  <Mail className="h-4 w-4 shrink-0 text-cyan-600" />
                   <span className="truncate">{EMAIL}</span>
                 </a>
-                <button data-testid="copy-email-button" onClick={() => copy(EMAIL, "Email")} className="shrink-0 text-slate-500 transition-colors hover:text-cyan-400" aria-label="Copy email">
+                <button data-testid="copy-email-button" onClick={() => copy(EMAIL, "Email")} className="shrink-0 text-slate-400 transition-colors hover:text-cyan-600" aria-label="Copy email">
                   <Copy className="h-4 w-4" />
                 </button>
               </div>
-              <div className="flex items-center justify-between gap-3 rounded-lg border border-white/10 bg-[#06060A] px-4 py-3">
-                <a data-testid="founder-phone-link" href={`tel:${PHONE.replace(/\s/g, "")}`} className="flex items-center gap-3 text-sm text-slate-300 transition-colors hover:text-cyan-400">
-                  <Phone className="h-4 w-4 shrink-0 text-cyan-400" />
+              <div className="flex items-center justify-between gap-3 rounded-lg border border-slate-200 bg-slate-50 px-4 py-3">
+                <a data-testid="founder-phone-link" href={`tel:${PHONE.replace(/\s/g, "")}`} className="flex items-center gap-3 text-sm text-slate-600 transition-colors hover:text-cyan-700">
+                  <Phone className="h-4 w-4 shrink-0 text-cyan-600" />
                   <span>{PHONE}</span>
                 </a>
-                <button data-testid="copy-phone-button" onClick={() => copy(PHONE, "Phone")} className="shrink-0 text-slate-500 transition-colors hover:text-cyan-400" aria-label="Copy phone">
+                <button data-testid="copy-phone-button" onClick={() => copy(PHONE, "Phone")} className="shrink-0 text-slate-400 transition-colors hover:text-cyan-600" aria-label="Copy phone">
                   <Copy className="h-4 w-4" />
                 </button>
               </div>
             </div>
 
             <div className="mt-6 flex items-center gap-2">
-              <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse-dot" />
-              <span className="font-mono2 text-[10px] tracking-[0.2em] text-slate-500 uppercase">Responds within 24 hours</span>
+              <span className="h-1.5 w-1.5 rounded-full bg-emerald-500 animate-pulse-dot" />
+              <span className="font-mono2 text-[10px] tracking-[0.2em] text-slate-400 uppercase">Responds within 24 hours</span>
             </div>
           </motion.div>
         </div>
@@ -141,9 +141,9 @@ export default function Contact() {
           transition={{ duration: 0.9, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
           onSubmit={submit}
           data-testid="contact-form"
-          className="flex flex-col gap-5 rounded-2xl border border-white/10 bg-[#0D0E15]/75 p-8 backdrop-blur-xl sm:p-10"
+          className="flex h-fit flex-col gap-5 rounded-2xl border border-slate-200 bg-white p-8 shadow-sm sm:p-10"
         >
-          <span className="font-mono2 text-xs tracking-[0.24em] text-slate-500 uppercase">Initiate Transmission</span>
+          <span className="font-mono2 text-xs tracking-[0.24em] text-slate-400 uppercase">Initiate Transmission</span>
           <div className="grid gap-5 sm:grid-cols-2">
             <input
               data-testid="contact-form-name-input"
@@ -169,7 +169,7 @@ export default function Contact() {
               className={`${inputCls} appearance-none`}
             >
               {SERVICE_OPTIONS.map((s) => (
-                <option key={s} value={s} className="bg-[#0D0E15]">{s}</option>
+                <option key={s} value={s}>{s}</option>
               ))}
             </select>
             <select
@@ -179,7 +179,7 @@ export default function Contact() {
               className={`${inputCls} appearance-none`}
             >
               {BUDGET_OPTIONS.map((b) => (
-                <option key={b} value={b} className="bg-[#0D0E15]">{b}</option>
+                <option key={b} value={b}>{b}</option>
               ))}
             </select>
           </div>
@@ -195,7 +195,7 @@ export default function Contact() {
             data-testid="contact-form-submit-button"
             type="submit"
             disabled={loading}
-            className="group mt-2 flex items-center justify-center gap-2 rounded-full bg-cyan-400 px-8 py-4 font-mono2 text-sm font-bold tracking-[0.14em] text-[#06060A] uppercase transition-all duration-300 hover:bg-white hover:shadow-[0_0_40px_rgba(6,182,212,0.4)] disabled:opacity-60"
+            className="group mt-2 flex items-center justify-center gap-2 rounded-full bg-cyan-500 px-8 py-4 font-mono2 text-sm font-bold tracking-[0.14em] text-white uppercase transition-all duration-300 hover:bg-[#0B1220] hover:shadow-[0_0_40px_rgba(6,182,212,0.3)] disabled:opacity-60"
           >
             {loading ? (
               <>

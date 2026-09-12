@@ -4,7 +4,7 @@ import { scrollToSection } from "@/App";
 
 export default function Footer() {
   return (
-    <footer data-testid="footer" className="relative overflow-hidden border-t border-white/10">
+    <footer data-testid="footer" className="relative overflow-hidden border-t border-white/10 bg-[#06060A] text-slate-100">
       <div className="mx-auto max-w-7xl px-5 pt-16 sm:px-8">
         <div className="flex flex-col items-start justify-between gap-10 pb-16 md:flex-row md:items-center">
           <div className="flex items-center gap-2.5">
@@ -30,6 +30,13 @@ export default function Footer() {
                 {l.label}
               </button>
             ))}
+            <a
+              data-testid="footer-admin-link"
+              href="/admin"
+              className="font-mono2 text-xs tracking-[0.2em] text-slate-600 uppercase transition-colors hover:text-cyan-400"
+            >
+              Admin
+            </a>
             <div data-testid="footer-status" className="flex items-center gap-2 rounded-full border border-white/10 px-3 py-1.5">
               <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse-dot" />
               <span className="font-mono2 text-[10px] tracking-[0.18em] text-slate-400 uppercase">All systems operational</span>
@@ -52,10 +59,10 @@ export default function Footer() {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
-        className="pointer-events-none select-none text-center"
+        className="pointer-events-none select-none pb-8 text-center"
         aria-hidden
       >
-        <span className="text-outline-cyan font-display block text-[18vw] font-extrabold leading-[0.8] tracking-tight opacity-40">
+        <span className="text-outline-cyan font-display inline-block text-[16vw] font-extrabold leading-[1.05] tracking-tight opacity-40">
           OMNIVEXX
         </span>
       </motion.div>

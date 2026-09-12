@@ -29,10 +29,20 @@ Website for agency "omnivexx", a tech service based agency offering: 1) Digital 
 - Custom cursor (dot + spring ring), Lenis smooth scrolling, glassmorphic navbar
 - Verified: lead POST/GET via curl, form submit e2e with toast, accordion interaction, hero render
 
+## Implemented (2026-09-12, update 2)
+- Theme shifted to mixed "cool" look per user: dark hero + dark footer, light ice-white content sections (stats, manifesto, services, case studies, marquee, contact)
+- Footer giant OMNIVEXX text clipping fixed (leading + bottom padding)
+- Startup-realistic stats: 7 disciplines, $250K+ ad spend managed, 87% bot win-rate, 24/7 ops
+- Case Studies section (#work): 3 polished sample engagements with images, metrics, CTAs (marked "sample engagements")
+- AI Chat Concierge "VEXX": floating widget, streaming SSE via emergentintegrations LlmChat (openai/gpt-5.4, EMERGENT_LLM_KEY), quick chips, chat history in db.chat_messages, Book-a-Call mini form -> saves as lead (service "AI Concierge — Call Booking")
+- Lead Inbox at /admin: JWT auth (POST /api/auth/login, bcrypt, admin seeded from env), GET /api/leads now Bearer-protected, leads list UI with refresh/logout
+- Navbar: added "Work" link; Footer: added "Admin" link
+- Verified: login wrong-pass 401 + success, leads 401 without token / 200 with token, chat SSE streams, admin UI e2e, case studies + footer render
+
 ## Backlog / Remaining
-- P0: none (core complete)
-- P1: Case studies/portfolio section, admin view for leads
-- P2: Team section, blog, multi-language, SEO meta/OG images, real founder portrait
+- P0: none
+- P1: Replace sample case studies + stats with real client results; email notification to founder on new lead (Resend)
+- P2: Team section, blog, SEO meta/OG images, real founder portrait, chat concierge tool-calling
 
 ## Test Credentials
-- No auth in app. Contact form is public. Leads readable via GET /api/leads (no admin UI yet).
+See /app/memory/test_credentials.md. Admin: admin@omnivexx.com / Omnivexx@2026 (test credentials — reseed anytime). Auth tests: /app/auth_testing.md.
