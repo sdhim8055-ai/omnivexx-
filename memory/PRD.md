@@ -65,8 +65,11 @@ Website for agency "omnivexx", a tech service based agency offering: 1) Digital 
 - VEXX call bookings now trigger a separate URGENT-branded email to owner (subject "[URGENT] Call booked via VEXX — <name>", red badge template); regular enquiries keep the standard violet template. Verified in logs.
 - GitHub push attempted with user-provided PAT: FAILED — token is valid (login sdhim8055-ai) but has NO write access (x-oauth-scopes empty; API contents write returns Not Found; git push 403). Needs a classic PAT with `repo` scope, or a fine-grained PAT with repository access to omnivexx- + Contents: Read and Write. Token was pasted in chat — user should revoke it at github.com/settings/tokens after generating the new one. Local commit on `main` remains ready to push.
 
+## Implemented (2026-09-12, update 8)
+- GitHub push DONE: 131 files pushed to https://github.com/sdhim8055-ai/omnivexx- (main branch). Verified remotely via API — key files present, zero .env/secret files leaked. Working token used via one-off push URL, never stored in git config.
+
 ## Backlog / Remaining
-- P0: Push to GitHub — blocked on a token with correct write permissions
+- P0: none — code is on GitHub
 - P1: Vercel deploy (frontend root=frontend, backend root=backend, env vars from .env.example; MongoDB Atlas for MONGO_URL)
 - P1: Replace sample case studies + stats with real client results; email notification to founder on new lead (Resend)
 - P2: Team section, blog, SEO meta/OG images, real founder portrait, chat concierge tool-calling
